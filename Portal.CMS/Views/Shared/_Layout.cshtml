@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="google-site-verification" content="G6AiGw3os7WPIIVtbjIQ7dNPF_Gnwe29Zvr4cEIHywA" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="vi" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" : ViewBag.Title + " - ZODY")</title>
+    <meta name="Description" content="@(string.IsNullOrEmpty(ViewBag.MetaDescription) ? "ZODY - Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam. Tìm việc làm và ứng tuyển ngay việc làm mới từ nhà tuyển dụng." : ViewBag.MetaDescription)">
+    <meta name="Keywords" content="việc làm,tìm việc làm,tuyển dụng,hồ sơ xin việc,tìm việc nhanh,viec lam,tim viec lam,tuyen dung,ho so xin viec,tim viec nhanh">
+    <meta property="fb:app_id" content="1085218064863895" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="@(string.IsNullOrEmpty(ViewBag.MetaImage) ? "http://zody.vn/Images/logo.png" : ViewBag.MetaImage)" />
+    <meta property="og:title" content="@(string.IsNullOrEmpty(ViewBag.MetaTitle) ? "Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" : ViewBag.MetaTitle)" />
+    <meta property="og:url" content="@(string.IsNullOrEmpty(ViewBag.Url) ? "http://zody.vn/" : ViewBag.Url)" />
+    <meta property="og:description" content="@(string.IsNullOrEmpty(ViewBag.MetaDescription) ? "ZODY - Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam. Tìm việc làm và ứng tuyển ngay việc làm mới từ nhà tuyển dụng." : ViewBag.MetaDescription)" />
+    <meta property="og:site_name" content="ZODY.VN" />
+    <link rel="icon" type="image/ico" href="~/favicon.ico">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
+    @RenderSection("scripts", required: false)
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-74699787-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1085218064863895";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <nav class="navbar navbar-default z-depth-1">
+        <div class="container-fluid">
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand logo" href="http://zody.vn">
+                    <img alt="Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" src="~/Images/logo.png" />
+                </a>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-left">
+
+                @Html.Action("Menu", "Home")
+                @Html.Partial("_LoginPartial")
+
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+
+    <div class="main-content container">
+        @RenderBody()
+    </div>
+
+    <div id="footer">
+        <div class="copyright-text">&copy; @DateTime.Now.Year <strong>ZODY</strong>. Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam.</div>
+    </div>
+</body>
+</html>

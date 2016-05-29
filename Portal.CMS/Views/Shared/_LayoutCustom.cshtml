@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? "Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" : ViewBag.Title + " - ZODY")</title>
+    <meta name="Description" content="@(string.IsNullOrEmpty(ViewBag.Description) ? "ZODY - Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam. Tìm việc làm và ứng tuyển ngay việc làm mới từ nhà tuyển dụng." : ViewBag.Description)">
+    <meta name="Keywords" content="việc làm,tìm việc làm,tuyển dụng,hồ sơ xin việc,tìm việc nhanh,viec lam,tim viec lam,tuyen dung,ho so xin viec,tim viec nhanh">
+    <meta property="og:image" content="@(string.IsNullOrEmpty(ViewBag.MetaImage) ? "http://zody.vn/images/logo.png" : ViewBag.MetaImage)" />
+    <meta property="og:title" content="@(string.IsNullOrEmpty(ViewBag.MetaTitle) ? "Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" : ViewBag.MetaTitle)" />
+    <meta property="og:url" content="@(string.IsNullOrEmpty(ViewBag.Url) ? "http://zody.vn/" : ViewBag.Url)" />
+    <meta property="og:title_name" content="zody.vn" />
+    <meta property="og:description" content="@(string.IsNullOrEmpty(ViewBag.MetaDescription) ? "ZODY - Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam. Tìm việc làm và ứng tuyển ngay việc làm mới từ nhà tuyển dụng." : ViewBag.MetaDescription)" />
+
+    <link rel="icon" type="image/ico" href="~/favicon.ico">
+
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design BTO -->
+
+    <link href="~/Content/theme.css" rel="stylesheet" />
+    <!-- Custom CSS for Documentation Only -->
+
+    <link href="~/Content/custom.css" rel="stylesheet" />
+</head>
+
+<body id="login-page">
+    <nav class="navbar navbar-default z-depth-1">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand logo" href="http://zody.vn">
+                    <img alt="Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" src="~/Images/logo.png" />
+                </a>
+            </div>
+            <!-- Brand and toggle get grouped for better mobile display -->
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-left">
+                @Html.Action("Menu", "Home")
+                @Html.Partial("_LoginPartial")
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+    @RenderBody()
+
+    <div id="login-footer"></div>
+
+    <!-- SCRIPTS ON FOOTER -->
+    <!-- JQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Material Design Bootstrap -->
+    <script src="~/Scripts/app.js"></script>
+</body>
+
+</html>

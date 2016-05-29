@@ -1,0 +1,23 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = "~/Views/Shared/_LayoutCustom.cshtml";
+}
+  
+    <div id="login-panel-wrapper">
+        <div id="login-panel" class="panel-group">
+            <div class="panel panel-default center">
+                <div class="panel-heading">
+                    <img alt="Mạng việc làm và tuyển dụng nguồn nhân lực cao tại Việt Nam - ZODY" src="~/Images/logo.png" />
+                </div>
+                <div class="panel-body" style="padding: 70px 0">
+                    <span class="light-300" style="font-size:20px">@ViewBag.Title</span>
+                    <p class="helper">
+                        @Html.Raw(@ViewBag.Message)
+                    </p>
+                </div>
+            </div>
+        </div>
+        <a href="/Account/Login" class="text-white">{{'Log in to your account.' | translate}}</a>
+
+        <div class="copyright-text">&copy; 2016 <strong>ZODY</strong>. Mạng tuyển dụng trực tuyến Việt Nam</div>
+    </div>

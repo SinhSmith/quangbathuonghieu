@@ -1,0 +1,44 @@
+﻿@model Portal.CMS.Models.ExternalLoginConfirmationViewModel
+
+@{
+    ViewBag.Title = "Đăng ký thành viên";
+}
+
+@using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Email)
+    <div class="container" id="main">
+        <!-- register -->
+        <div class="row" style="padding-top:40px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="panel" id="login-panel">
+                    <div class="panel-heading center"><span class="light-300" style="font-size:20px">Đăng ký</span></div>
+                    <div class="panel-body">
+                        <p class="helper">Bạn vừa chứng thực thành công với tài khoản <strong>@Html.DisplayFor(model => model.LoginProvider)</strong> với email <strong>@Html.DisplayFor(model => model.Email)</strong>. Vui lòng xác nhận thông tin bên dưới để hoàn tất việc đăng ký tài khoản sử dụng trên hệ thống Zody:</p>
+                        <div class="row" style="padding-top:0px">
+                            <div class="col-md-2"></div>
+                            <div class="input-field col-md-8 radio helper display-center">
+                                <label class="radio" for="IsCandidates">
+                                    @Html.RadioButton("Role", 1, true, new { id = "IsCandidates" }) Bạn là người tìm việc
+                                </label>
+                                <label class="radio" for="IsEmployer">
+                                    @Html.RadioButton("Role", 2, new { id = "IsEmployer" }) Bạn là nhà tuyển dụng
+                                </label>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div> <!-- .panel-body -->
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" class="btn btn-primary display-center" value="Hoàn tất" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+
+}    
