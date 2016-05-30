@@ -17,14 +17,16 @@ namespace Portal.Core.Service
                 return category;
             }
         }
-        public static List<Category> GetCity(Guid countryId)
+
+        public static List<Category> GetCities()
         {
             using (var db = new PortalEntities())
             {
-                List<Category> categories = db.Categories.Where(x => x.Type == (int)CategoryType.City && x.ParentId == countryId && x.Status == (int)Util.Define.Status.Active).OrderBy(x => x.SortOrder).ToList();
+                List<Category> categories = db.Categories.Where(x => x.Type == (int)CategoryType.City && x.Status == (int)Util.Define.Status.Active).OrderBy(x => x.SortOrder).ToList();
                 return categories;
             }
         }
+
         public static List<Category> GetDistrict(Guid cityId)
         {
             using (var db = new PortalEntities())
