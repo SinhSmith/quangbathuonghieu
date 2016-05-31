@@ -29,7 +29,8 @@ namespace Portal.Site
                       "~/Content/bootstrap.css",
                       "~/Content/bootstrap-datepicker3.min.css",
                       "~/Content/select2.css",
-                      "~/Content/theme.css",
+                      //"~/Content/theme.css",
+                      "~/Content/style.css",
                       "~/Content/custom.css",
                       "~/Content/site.css"));
 

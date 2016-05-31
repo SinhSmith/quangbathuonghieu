@@ -50,56 +50,62 @@
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1085218064863895";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-
-    <nav class="navbar navbar-default z-depth-1">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
-                    <span class="sr-only"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @*<a class="navbar-brand logo" href="http://quangbathuonghieuviet.vn">
-                        <img alt="Trung Tâm Quảng Bá Thương Hiệu Việt" src="~/Images/logo.png" />
-                    </a>*@
-            </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse-left">
-                @Html.Action("Menu", "Home")
-                @Html.Partial("_LoginPartial")
-            </div><!-- /.navbar-collapse -->
-
-        </div><!-- /.container -->
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="/" title="Trang chủ">
-                        <img src="http://quangbathuonghieuviet.vn/templates/images/logo.png" alt="" style="max-width: 100%;">
-                    </a>
-                </div>
-                <div class="col-md-9">
-                    <a href="/" title="Trang chủ">
-                        <img src="http://quangbathuonghieuviet.vn/data/images/banner/BNquan%20ba%20thuong%20hieu-1.jpg" alt="" style="height: 170px; width: 600px">
-                    </a>
+    
+    <div id="wrapper">
+        <!--Header-->
+        <header>
+            <div class="navTop">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
+                            <span class="sr-only"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-left">
+                        @Html.Action("Menu", "Home")
+                        @Html.Partial("_LoginPartial")
+                    </div>
                 </div>
             </div>
+            <div class="container">
+                <div class="headerLeft">
+                    <a href="http://quangbathuonghieuviet.vn/"><img src="http://quangbathuonghieuviet.vn/templates/images/logo.png" /></a>
+                </div>
+                <div class="headerRight">
+                    <div class="">
+                        <div class="boxContent">
+                            <p><img alt="" src="http://quangbathuonghieuviet.vn/data/images/banner/BNquan%20ba%20thuong%20hieu-1.jpg" style="height:175px; width:900px" /></p>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!--End Header-->
+
+        <!--Body-->
+        <div class="container">
+            @RenderBody()
         </div>
-    </nav>
+        <!--End Body-->
 
-    <div class="main-content container">
-        @RenderBody()
-    </div>
-
-    <div id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="copyright-text">&copy; @DateTime.Now.Year - Công Ty TNHH MTV Ứng Dụng Công Nghệ Phần Mềm Việt.</div>
-                <div><i class="glyphicon glyphicon-globe"></i> 05 Nguyễn Cao - Phường Thanh Khê Đông - Quận Thanh Khê - Tp Đà Nẵng</div>
-                <div>
-                    <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:quangbathuonghieuviet2010@gmail.com" rel="nofollow">quangbathuonghieuviet2010@gmail.com</a> - <i class="glyphicon glyphicon-phone"></i>0916355445
+        <!--Footer-->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright-text">&copy; @DateTime.Now.Year - Công Ty TNHH MTV Ứng Dụng Công Nghệ Phần Mềm Việt.</div>
+                    <div><i class="glyphicon glyphicon-globe"></i> 05 Nguyễn Cao - Phường Thanh Khê Đông - Quận Thanh Khê - Tp Đà Nẵng</div>
+                    <div>
+                        <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:quangbathuonghieuviet2010@gmail.com" rel="nofollow">quangbathuonghieuviet2010@gmail.com</a> - <i class="glyphicon glyphicon-phone"></i>0916355445
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
+        <!--End Footer-->
     </div>
+    
 </body>
 </html>

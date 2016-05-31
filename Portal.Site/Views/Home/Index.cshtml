@@ -3,27 +3,28 @@
 
 @model IPagedList<Portal.Core.Database.Company>
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            <p class="lead">Doanh nghiệp</p>
-            @foreach (var company in Model)
-            {
-                <div class="col-md-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                <a href="http://quangbathuonghieuviet.vn/doanh-nghiep/cong-ty-tnhh-mtv-co-khi-hiep-duoc-id427.html" title=@company.Name>@company.Name</a>
-                            </h3>
-                        </div>
-                        <div class="panel-body text-justify">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <a href="http://quangbathuonghieuviet.vn/doanh-nghiep/cong-ty-tnhh-mtv-co-khi-hiep-duoc-id427.html" title=@company.Name>
-                                        <img style="max-width: 100%;" src="http://quangbathuonghieuviet.vn/data/enterprise/200/59e88b3ca99b43d3308cd568473cfba0.png" alt=@company.Name>
+<!--pageContent-->
+<div class="pageContent">
+    <!--colLeft-->
+    <div class="colLeft">
+        <div class="boxItem">
+            <h1 class="title">Doanh nghiệp <span class="numpost">(Có 352 doanh nghiệp)</span></h1>
+            <div class="boxContent">
+                <div class="row">
+                    @foreach (var company in Model)
+                    {
+                        <div class="col-lg-6">
+                            <div class="enterprise">
+                                <h3 class="title">
+                                    <a href="#" title="@company.Name">@company.Name</a>
+                                </h3>
+                                <div class="clearfix"></div>
+                                <div class="enterpriseLogo">
+                                    <a href="#" title="@company.Name">
+                                        <img src="http://quangbathuonghieuviet.vn/data/enterprise/200/59e88b3ca99b43d3308cd568473cfba0.png" alt="@company.Name" />
                                     </a>
                                 </div>
-                                <div class="col-md-9">
+                                <div class="enterpriseInfo">
                                     <div class="rowInfo" style="@(string.IsNullOrEmpty(company.Address) ? "display: none": "display: block")">
                                         <i class="glyphicon glyphicon-globe"></i> <span>@company.Address</span>
                                     </div>
@@ -38,23 +39,27 @@
                                         <i class="glyphicon glyphicon-eye-open"></i> <span>@company.CountView</span>
                                     </div>
                                 </div>
+                                <div class="clearfix"></div>
                             </div>
                         </div>
-                    </div>
+                    }
                 </div>
-            }
-            <div class="text-center">
-                @Html.PagedListPager(Model, page =>
+                <div class="text-center">
+                    @Html.PagedListPager(Model, page =>
                                 Url.Action("Index", new
                                 {
                                     page,
-                                    Keyword = Request.QueryString["keyword"],
+                                    keyword = Request.QueryString["keyword"],
                                 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+                </div>
             </div>
         </div>
-        <div class="col-md-3">
-
-        </div>
+        <!--End Box-->
+        <!--Box-->
     </div>
+    <!--End colLeft-->
+    <!--colRight-->
+    <!--End colRight-->
+    <div class="clearfix"></div>
 </div>
-
+<!--End pageContent-->

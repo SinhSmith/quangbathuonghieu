@@ -15,7 +15,7 @@ namespace Portal.Site.Controllers
         public ActionResult Index(string keyword, int page = 1)
         {
             var companies = db.Companies.Where(x => string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword)).OrderByDescending(x => x.CreatedDate);
-            return View(companies.ToList().ToPagedList(page, 2));
+            return View(companies.ToList().ToPagedList(page, 10));
         }
 
         public ActionResult About()
