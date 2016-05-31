@@ -15,6 +15,7 @@ namespace Portal.Core.Database
     public partial class Company
     {
         public System.Guid Id { get; set; }
+        public int Ranking { get; set; }
         public string Name { get; set; }
         public Nullable<System.Guid> ImageCover { get; set; }
         public string Email { get; set; }
@@ -24,6 +25,7 @@ namespace Portal.Core.Database
         public string Director { get; set; }
         public string Website { get; set; }
         public string Description { get; set; }
+        public Nullable<int> CountView { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

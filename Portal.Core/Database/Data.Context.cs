@@ -26,9 +26,9 @@ namespace Portal.Core.Database
         }
     
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<Company> Companies { get; set; }
         public virtual DbSet<Image> Images { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
+        public virtual DbSet<Company> Companies { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

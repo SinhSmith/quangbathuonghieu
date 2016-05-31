@@ -15,6 +15,7 @@ namespace Portal.Core.Database
     public partial class Product
     {
         public System.Guid Id { get; set; }
+        public int Ranking { get; set; }
         public string Name { get; set; }
         public Nullable<System.Guid> ImageCover { get; set; }
         public Nullable<decimal> Price { get; set; }
@@ -22,6 +23,7 @@ namespace Portal.Core.Database
         public Nullable<System.Guid> City { get; set; }
         public string Phone { get; set; }
         public string Description { get; set; }
+        public Nullable<int> CountView { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

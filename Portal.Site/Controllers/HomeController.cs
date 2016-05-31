@@ -1,17 +1,21 @@
-﻿using Portal.Site.Models;
+﻿using Portal.Core.Database;
+using Portal.Site.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 
 namespace Portal.Site.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private PortalEntities db = new PortalEntities();
+        public ActionResult Index(string keyword, int page = 1)
         {
-            return View();
+            var companies = db.Companies.Where(x => string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword)).OrderByDescending(x => x.CreatedDate);
+            return View(companies.ToList().ToPagedList(page, 2));
         }
 
         public ActionResult About()
