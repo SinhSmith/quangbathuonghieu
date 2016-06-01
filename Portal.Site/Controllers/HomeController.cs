@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
 
 namespace Portal.Site.Controllers
 {
     public class HomeController : Controller
     {
         private PortalEntities db = new PortalEntities();
-        public ActionResult Index(string keyword, int page = 1)
+        public ActionResult Index()
         {
-            var companies = db.Companies.Where(x => string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword)).OrderByDescending(x => x.CreatedDate);
-            return View(companies.ToList().ToPagedList(page, 10));
+            ViewBag.Message = "Your application home page.";
+
+            return View();
         }
 
         public ActionResult About()

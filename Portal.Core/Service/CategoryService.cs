@@ -18,6 +18,15 @@ namespace Portal.Core.Service
             }
         }
 
+        public static List<Category> GetCategoryByType(int type)
+        {
+            using (var db = new PortalEntities())
+            {
+                List<Category> categories = db.Categories.Where(x => x.Type == type && x.Status == (int)Util.Define.Status.Active).OrderBy(x => x.SortOrder).ToList();
+                return categories;
+            }
+        }
+
         public static List<Category> GetCities()
         {
             using (var db = new PortalEntities())

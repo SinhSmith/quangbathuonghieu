@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="PortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -32,6 +32,7 @@
           <Property Name="Website" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
           <Property Name="CountView" Type="int" />
+          <Property Name="TradeId" Type="uniqueidentifier" />
           <Property Name="Status" Type="int" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -60,6 +61,7 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="100" />
           <Property Name="Description" Type="ntext" />
           <Property Name="CountView" Type="int" />
+          <Property Name="TradeId" Type="uniqueidentifier" />
           <Property Name="Status" Type="int" />
           <Property Name="CreatedBy" Type="uniqueidentifier" />
           <Property Name="CreatedDate" Type="datetime" />
@@ -181,6 +183,7 @@
           <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountView" Type="Int32" />
+          <Property Name="TradeId" Type="Guid" />
           <Property Name="Status" Type="Int32" />
           <Property Name="CreatedBy" Type="Guid" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -202,6 +205,7 @@
           <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CountView" Type="Int32" />
+          <Property Name="TradeId" Type="Guid" />
           <Property Name="Status" Type="Int32" />
           <Property Name="CreatedBy" Type="Guid" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -233,7 +237,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -279,6 +283,7 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TradeId" ColumnName="TradeId" />
                 <ScalarProperty Name="CountView" ColumnName="CountView" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
@@ -302,6 +307,7 @@
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TradeId" ColumnName="TradeId" />
                 <ScalarProperty Name="CountView" ColumnName="CountView" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
@@ -315,7 +321,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

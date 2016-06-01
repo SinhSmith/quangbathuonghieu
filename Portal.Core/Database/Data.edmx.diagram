@@ -8,8 +8,8 @@
         <EntityTypeShape EntityType="PortalModel.Category" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PortalModel.Image" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="PortalModel.Profile" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PortalModel.Company" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="PortalModel.Product" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="PortalModel.Company" Width="1.5" PointX="3.375" PointY="16.625" />
+        <EntityTypeShape EntityType="PortalModel.Product" Width="1.5" PointX="3.375" PointY="11.5" />
         <AssociationConnector Association="PortalModel.FK_Company_Image" />
         <AssociationConnector Association="PortalModel.FK_Product_Image" />
       </Diagram>

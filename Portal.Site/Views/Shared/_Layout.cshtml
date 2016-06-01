@@ -50,11 +50,11 @@
             js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1085218064863895";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    
+
     <div id="wrapper">
         <!--Header-->
         <header>
-            <div class="navTop">
+            <div class="navTop navbar navbar-default">
                 <div class="container">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
@@ -64,15 +64,15 @@
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse" id="navbar-collapse-left">
+                    <div class="collapse navbar-collapse" id="navbar-collapse-left" style="padding: 0px; border:none;">
                         @Html.Action("Menu", "Home")
                         @Html.Partial("_LoginPartial")
                     </div>
                 </div>
             </div>
-            <div class="container">
+            <div class="container" style="padding: 0;">
                 <div class="headerLeft">
-                    <a href="http://quangbathuonghieuviet.vn/"><img src="http://quangbathuonghieuviet.vn/templates/images/logo.png" /></a>
+                    <a href="#"><img src="http://quangbathuonghieuviet.vn/templates/images/logo.png" /></a>
                 </div>
                 <div class="headerRight">
                     <div class="">
@@ -85,13 +85,11 @@
             </div>
         </header>
         <!--End Header-->
-
         <!--Body-->
-        <div class="container">
+        <div class="container" style="background: #fff; margin-top: 10px;">
             @RenderBody()
         </div>
         <!--End Body-->
-
         <!--Footer-->
         <footer>
             <div class="container">
@@ -106,6 +104,6 @@
         </footer>
         <!--End Footer-->
     </div>
-    
+
 </body>
 </html>

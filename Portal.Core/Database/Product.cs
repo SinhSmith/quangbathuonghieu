@@ -24,6 +24,7 @@ namespace Portal.Core.Database
         public string Phone { get; set; }
         public string Description { get; set; }
         public Nullable<int> CountView { get; set; }
+        public Nullable<System.Guid> TradeId { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<System.Guid> CreatedBy { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }

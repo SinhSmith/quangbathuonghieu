@@ -1,0 +1,92 @@
+﻿@model Portal.Core.Database.Company
+
+<!--pageContent-->
+<div class="pageContent">
+    <!--colLeft-->
+    <div class="colLeft">
+        <div class="boxItem">
+            <h1 class="title">@Model.Name</h1>
+            <div class="boxContent">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img style="width: 310px;max-width: none; height: 200px;" src="http://quangbathuonghieuviet.vn/data/enterprise/500/505e6aa4048834877ffedf206373c645.png">
+                    </div>
+                    <div class="col-md-8">
+                        <dl class="dl-horizontal">
+                            <dt>Email:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Email)
+                            </dd>
+
+                            <dt>Địa chỉ:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Address)
+                            </dd>
+
+                            <dt>Thành phố:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.City)
+                            </dd>
+
+                            <dt>Điện thoại:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Phone)
+                            </dd>
+
+                            <dt>Giám đốc:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Director)
+                            </dd>
+
+                            <dt>Website:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Website)
+                            </dd>
+
+                            <dt>Lượt xem:</dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.CountView)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="boxItem">
+            <h1 class="title">Thông tin chi tiết</h1>
+            <div class="boxContent">
+                @Model.Description
+            </div>
+        </div>
+
+        <div class="boxItem">
+            <h1 class="title">Vị trí bản đồ</h1>
+            <div class="boxContent">
+                <iframe width="702"
+                        height="400"
+                        frameborder="0" style="border:0"
+                        src="@("https://www.google.com/maps/embed/v1/place?key=AIzaSyCNc3-tbL6wTxKnFKq1cWh8wi-nZQJEneA&q=" + Model.Address)" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <div class="boxItem">
+            <h1 class="title">Doanh nghiệp cùng ngành nghề</h1>
+            <div class="boxContent">
+                @Html.Action("ListCompanySameJob", "Company", new { id = Model.Id })
+            </div>
+        </div>
+    </div>
+    <!--End colLeft-->
+    <!--colRight-->
+    <div class="colRight">
+        @Html.Action("ListCategory", "Category", new { categoryType = Portal.Core.Service.BaseService.CategoryType.Trades })
+        <hr />
+        @Html.Action("ListCategory", "Category", new { categoryType = Portal.Core.Service.BaseService.CategoryType.City })
+    </div>
+    <!--End colRight-->
+    <div class="clearfix"></div>
+</div>
+<!--End pageContent-->

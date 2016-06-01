@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
-    var footer = $("#footer");
-    if ($(window).height() - $("#footer").offset().top > 0) {
+    var footer = $("footer");
+    if ($(window).height() - $("footer").offset().top > 0) {
         footer.css("position", "absolute").css("bottom", "0");
     }
 
