@@ -15,10 +15,20 @@ namespace Portal.Site.Controllers
     {
         private PortalEntities db = new PortalEntities();
 
-        // GET: ListCompanyForHomePage
-        public ActionResult ListCompanyForHomePage(string keyword, int page = 1)
+        // GET: List
+        public ActionResult List(Guid? trade, Guid? city, string keyword, int page = 1)
         {
-            var companies = db.Companies.Where(x => string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword)).OrderByDescending(x => x.CreatedDate);
+            var companies = db.Companies.Where(x => (string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword))
+                && (trade == null || x.TradeId == trade.Value)
+                && (city == null || x.City == city.Value))
+                .OrderByDescending(x => x.CreatedDate);
+            return PartialView(companies.ToList().ToPagedList(page, 10));
+        }
+
+        // GET: ListCompanyForHomePage
+        public ActionResult ListCompanyForHomePage(int page = 1)
+        {
+            var companies = db.Companies.OrderByDescending(x => x.CreatedDate);
             return PartialView(companies.ToList().ToPagedList(page, 10));
         }
 

@@ -1,0 +1,27 @@
+﻿<div class="boxItem">
+    <h1 class="title">Tìm kiếm</h1>
+    <div class="boxContent">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @using (Html.BeginForm("List", "Company", FormMethod.Get, new { id = "form-Company" }))
+                {
+                    <div class="form-group">
+                        @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Nhập nội dung tìm kiếm" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownList("city", ViewBag.City as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownList("trade", ViewBag.Trade as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        <button class="btn-search btn btn-primary" type="submit">
+                            <span><strong><i class="glyphicon glyphicon-search"></i> Tìm ngay</strong></span>
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

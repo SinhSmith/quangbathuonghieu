@@ -178,7 +178,7 @@ span.numpost {
 .enterprise {
     border: 1px solid #ddd;
     margin-bottom: 10px;
-    height: 160px;
+    min-height: 171px;
     border-radius: 4px;
     border-top: none;
 }
@@ -186,10 +186,11 @@ span.numpost {
 .enterpriseLogo {
     float: left;
     padding: 2px;
+    width: 35%;
 }
 
 .enterpriseInfo {
-    width: 70%;
+    width: 64%;
     float: right;
 }
 
@@ -415,3 +416,8 @@ span.numpost {
         border-radius: 10px;
         background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
     }
+
+.col-padding-sm {
+    padding-right: 5px;
+    padding-left: 5px;
+}

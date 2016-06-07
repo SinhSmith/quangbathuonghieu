@@ -30,17 +30,21 @@ namespace Portal.Site.Controllers
         }
 
         // GET: Product/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Product product = db.Products.Find(id);
+            Product product = db.Products.FirstOrDefault(x => x.Ranking == id.Value);
             if (product == null)
             {
                 return HttpNotFound();
             }
+
+            product.CountView++;
+            db.SaveChanges();
+
             return View(product);
         }
 

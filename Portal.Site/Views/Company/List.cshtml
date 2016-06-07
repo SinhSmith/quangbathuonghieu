@@ -1,7 +1,17 @@
-﻿@model List<Portal.Core.Database.Company>
+﻿@using PagedList.Mvc
+@using PagedList;
 
-<div>
-    @foreach (var company in Model)
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IPagedList<Portal.Core.Database.Company>
+
+<div class="boxItem">
+    <h1 class="title">Doanh nghiệp <span class="numpost">(Có @Model.TotalItemCount.ToString() doanh nghiệp)</span></h1>
+    <div class="boxContent">
+        <div>
+            @foreach (var company in Model)
 {
     <div class="col-lg-6 col-md-6 col-xs-6 col-padding-sm">
         <div class="enterprise">
@@ -40,4 +50,15 @@
         </div>
     </div>
 }
+        </div>
+        <div class="text-center">
+            @Html.PagedListPager(Model, page =>
+                                Url.Action("Index", new
+                                {
+                                    page,
+                                    keyword = Request.QueryString["keyword"],
+                                }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
 </div>
+<!--End Box-->

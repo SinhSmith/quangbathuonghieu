@@ -8,11 +8,19 @@
                 @foreach (var category in Model)
             {
                     <li>
-                        <i class="glyphicon @(Model.First().Type == (int)Portal.Core.Service.BaseService.CategoryType.City ? "glyphicon-globe" : "glyphicon-tint")"></i> <a href="#" title="@category.Name">@category.Name</a>
+                        @if (Model.First().Type == (int)Portal.Core.Service.BaseService.CategoryType.City)
+                        {
+                            <i class="glyphicon glyphicon-globe"></i>
+                            <a href="@Url.Action("List", "Company", new { city = category.Id })" title="@category.Name">@category.Name</a>
+                        }
+                        else
+                        {
+                            <i class="glyphicon glyphicon-tint"></i>
+                            <a href="@Url.Action("List", "Company", new { trade = category.Id })" title="@category.Name">@category.Name</a>
+                        }
                     </li>
                 }
             </ul>
         </div>
     </div>
 </div>
-<!--End Box-->

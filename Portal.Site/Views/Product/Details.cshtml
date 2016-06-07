@@ -1,130 +1,66 @@
 ﻿@model Portal.Core.Database.Product
 
-@{
-    ViewBag.Title = "Details";
-}
+<div class="boxItem">
+    <h1 class="title">@Model.Name</h1>
+    <div class="boxContent">
+        <div class="row">
+            <div class="col-md-4">
+                <img style="width: 310px;max-width: none; height: 200px;" src="http://quangbathuonghieuviet.vn/data/enterprise/500/505e6aa4048834877ffedf206373c645.png">
+            </div>
+            <div class="col-md-8">
+                <dl class="dl-horizontal">
+                    <dt>Giá:</dt>
+                    <dd>
+                        @(Model.Price.HasValue ? Model.Price.Value.ToString("N0") : "0") VNĐ
+                    </dd>
 
-<h2>Details</h2>
+                    <dt>Địa chỉ:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
 
-<div>
-    <h4>Product</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Ranking)
-        </dt>
+                    <dt>Thành phố:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ranking)
-        </dd>
+                    <dt>Điện thoại:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Phone)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CountView)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CountView)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedBy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image.FileName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image.FileName)
-        </dd>
-
-    </dl>
+                    <dt>Lượt xem:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CountView)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<hr />
+
+<div class="boxItem">
+    <h1 class="title">Thông tin chi tiết</h1>
+    <div class="boxContent">
+        @Model.Description
+    </div>
+</div>
+
+<div class="boxItem">
+    <h1 class="title">Vị trí bản đồ</h1>
+    <div class="boxContent">
+        <iframe width="702"
+                height="400"
+                frameborder="0" style="border:0"
+                src="@("https://www.google.com/maps/embed/v1/place?key=AIzaSyCNc3-tbL6wTxKnFKq1cWh8wi-nZQJEneA&q=" + Model.Address)" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="boxItem">
+    <h1 class="title">Sản phẩm cùng ngành nghề</h1>
+    <div class="boxContent">
+        @*@Html.Action("ListCompanySameJob", "Company", new { id = Model.Id })*@
+    </div>
+</div>    

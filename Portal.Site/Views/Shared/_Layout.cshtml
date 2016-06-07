@@ -87,7 +87,26 @@
         <!--End Header-->
         <!--Body-->
         <div class="container" style="background: #fff; margin-top: 10px;">
-            @RenderBody()
+            <!--pageContent-->
+            <div class="pageContent">
+                <!--colLeft-->
+                <div class="colLeft">
+                    @RenderBody()
+                </div>
+                <!--End colLeft-->
+                <!--colRight-->
+                <div class="colRight">
+                    @Html.Action("SearchPartial", "Home")
+                    <hr />
+                    @Html.Action("ListCategory", "Category", new { categoryType = Portal.Core.Service.BaseService.CategoryType.Trades })
+                    <hr />
+                    @Html.Action("ListCategory", "Category", new { categoryType = Portal.Core.Service.BaseService.CategoryType.City })
+                </div>
+                <!--End colRight-->
+                <div class="clearfix"></div>
+            </div>
+            <!--End pageContent-->
+
         </div>
         <!--End Body-->
         <!--Footer-->

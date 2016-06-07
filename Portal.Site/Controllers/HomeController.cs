@@ -25,6 +25,17 @@ namespace Portal.Site.Controllers
             return View();
         }
 
+        public ActionResult SearchPartial()
+        {
+            var cities = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.City);
+            ViewBag.City = new SelectList(cities, "Id", "Name");
+
+            var trades = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.Trades);
+            ViewBag.Trade = new SelectList(trades, "Id", "Name");
+
+            return PartialView();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
