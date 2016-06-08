@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Portal.Core.Database;
 using PagedList;
+using System.IO;
 
 namespace Portal.Site.Controllers
 {
@@ -69,26 +70,53 @@ namespace Portal.Site.Controllers
         // GET: Company/Create
         public ActionResult Create()
         {
-            ViewBag.ImageCover = new SelectList(db.Images, "Id", "FileName");
+            var cities = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.City);
+            ViewBag.City = new SelectList(cities, "Id", "Name");
+
             return View();
         }
 
         // POST: Company/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)] // Hoac [AllowHtml] Annotation
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Ranking,Name,ImageCover,Email,Address,City,Phone,Director,Website,Description,CountView,Status,CreatedBy,CreatedDate,UpdatedBy,UpdateDate")] Company company)
+        public ActionResult Create([Bind(Include = "Name,Email,Address,City,Phone,Director,Website,Description,Status")] Company company, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
+                Guid? imageCover = Guid.Empty;
+                if (uploadFile != null && uploadFile.ContentLength > 0)
+                {
+                    string inputFilePath = uploadFile.FileName.ToLower();
+                    string[] ImageList = { ".gif", ".jpg", ".png" };
+                    if (ImageList.Contains(Path.GetExtension(inputFilePath)))
+                    {
+                        var fileName = Path.GetFileName(uploadFile.FileName);
+                        var img = new Image()
+                        {
+                            Id = Guid.NewGuid(),
+                            FileName = fileName
+                        };
+
+                        string physicalDirectory = Server.MapPath("~/Uploads/Company/" + img.Id);
+                        if (!Directory.Exists(physicalDirectory))
+                            Directory.CreateDirectory(physicalDirectory);
+                        uploadFile.SaveAs(physicalDirectory + "/" + img.FileName);
+
+                        img.FilePath = "/Uploads/Company/" + img.Id;
+                        db.Images.Add(img);
+
+                        imageCover = img.Id;
+                    }
+                }
+
                 company.Id = Guid.NewGuid();
+                if (imageCover != Guid.Empty)
+                    company.ImageCover = imageCover;
                 db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ImageCover = new SelectList(db.Images, "Id", "FileName", company.ImageCover);
             return View(company);
         }
 
@@ -104,24 +132,52 @@ namespace Portal.Site.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ImageCover = new SelectList(db.Images, "Id", "FileName", company.ImageCover);
+            
+            var cities = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.City);
+            ViewBag.City = new SelectList(cities, "Id", "Name");
+
             return View(company);
         }
 
         // POST: Company/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Ranking,Name,ImageCover,Email,Address,City,Phone,Director,Website,Description,CountView,Status,CreatedBy,CreatedDate,UpdatedBy,UpdateDate")] Company company)
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,ImageCover,Address,City,Phone,Director,Website,Description,Status")] Company company, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
+                Guid? imageCover = Guid.Empty;
+                if (uploadFile != null && uploadFile.ContentLength > 0)
+                {
+                    string inputFilePath = uploadFile.FileName.ToLower();
+                    string[] ImageList = { ".gif", ".jpg", ".png" };
+                    if (ImageList.Contains(Path.GetExtension(inputFilePath)))
+                    {
+                        var fileName = Path.GetFileName(uploadFile.FileName);
+                        var img = new Image()
+                        {
+                            Id = Guid.NewGuid(),
+                            FileName = fileName
+                        };
+
+                        string physicalDirectory = Server.MapPath("~/Uploads/Company/" + img.Id);
+                        if (!Directory.Exists(physicalDirectory))
+                            Directory.CreateDirectory(physicalDirectory);
+                        uploadFile.SaveAs(physicalDirectory + "/" + img.FileName);
+
+                        img.FilePath = "/Uploads/Company/" + img.Id;
+                        db.Images.Add(img);
+
+                        imageCover = img.Id;
+                    }
+                }
+                if (imageCover != Guid.Empty)
+                    company.ImageCover = imageCover;
+
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ImageCover = new SelectList(db.Images, "Id", "FileName", company.ImageCover);
             return View(company);
         }
 

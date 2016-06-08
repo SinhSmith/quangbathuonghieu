@@ -1,65 +1,38 @@
 ﻿@model IEnumerable<Portal.Core.Database.Company>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh mục doanh nghiệp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+    <div style="padding-bottom: 10px;">
+        <h3 style="display: inline-block;">Danh mục doanh nghiệp</h3>
+        <p class="pull-right">
+            @Html.ActionLink("Tạo mới doanh nghiệp", "Create", null, new { @class = "btn btn-sm btn-info" })
+        </p>
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Ranking)
+            Id
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Địa chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.City)
+            Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Director)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountView)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedBy)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image.FileName)
-        </th>
-        <th></th>
+            Tình trạng
+        </th>        
+        <th style="width: 125px;"></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -77,45 +50,14 @@
             @Html.DisplayFor(modelItem => item.Address)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Phone)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Director)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountView)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Status)
-        </td>
+        </td>        
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedBy)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image.FileName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-sm btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
         </td>
     </tr>
 }

@@ -91,7 +91,7 @@ header {
 }
 /*-----Footer-----*/
 footer {
-    position: relative;
+    position: relative !important;
     padding: 10px 0;
     margin-top: 10px;
     background: #fff;
