@@ -18,6 +18,11 @@ namespace Portal.Site
             routes.MapRoute(name: "ForgotPassword", url: "quen-mat-khau", defaults: new { controller = "Account", action = "ForgotPassword" });
             routes.MapRoute(name: "ChangePassword", url: "quan-ly-tai-khoan", defaults: new { controller = "Manage", action = "ChangePassword" });
 
+            routes.MapRoute(name: "Company", url: "quan-ly-doanh-nghiep", defaults: new { controller = "Company", action = "Index" });
+            routes.MapRoute(name: "Product", url: "quan-ly-san-pham", defaults: new { controller = "Product", action = "Index" });
+
+            //routes.MapRoute(name: "User", url: "quan-ly-nguoi-dung", defaults: new { controller = "User", action = "Index" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -1,65 +1,94 @@
 ﻿@model IEnumerable<Portal.Core.Database.Company>
 
-@{
-    ViewBag.Title = "Danh mục doanh nghiệp";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
+    @{
+        ViewBag.Title = "Danh mục doanh nghiệp";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <script>
+        $(document).ready(function () {
+            $(".btnDelete").click(function (e) {
+                e.preventDefault();
+                if (confirm('Bạn có thật sự muốn xóa doanh nghiệp này?')) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")',
+                        type: "POST",
+                        data: { id: $(this).attr("data-id") },
+                    }).done(function (data) {
+                        if (data.success) {
+                            //Refresh
+                            location.reload();
+                        }
+                        else {
+                            alert("Có lỗi xảy ra trong khi xóa. Vui lòng thử lại lần nữa.");
+                        }
+                    }).fail(function () {
+                        alert("Có lỗi xảy ra trong khi xóa. Vui lòng thử lại lần nữa.");
+                    })
+                }
+                return false;
+            });
+        });
+    </script>
 
     <div style="padding-bottom: 10px;">
-        <h3 style="display: inline-block;">Danh mục doanh nghiệp</h3>
+        <h3 style="display: inline-block;">Danh mục doanh nghiệp (@Model.Count().ToString() doanh nghiệp)</h3>
         <p class="pull-right">
             @Html.ActionLink("Tạo mới doanh nghiệp", "Create", null, new { @class = "btn btn-sm btn-info" })
         </p>
     </div>
 
-<table class="table">
-    <tr>
-        <th>
-            Id
-        </th>
-        <th>
-            Tên
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-            Địa chỉ
-        </th>
-        <th>
-            Số điện thoại
-        </th>
-        <th>
-            Tình trạng
-        </th>        
-        <th style="width: 125px;"></th>
-    </tr>
+    <table class="table">
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th style="width: 125px;"></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ranking)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class="btn btn-sm btn-primary" }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-sm btn-danger" })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ranking)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    <span class="glyphicon @(item.Status == (int)Portal.Core.Util.Define.Status.Active ? "glyphicon-ok" : "glyphicon-remove")"></span>
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+                    <button class="btn btn-sm btn-danger btnDelete" data-id=@item.Id>Xóa</button>
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+
+

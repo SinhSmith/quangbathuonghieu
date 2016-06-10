@@ -44,7 +44,7 @@
         <div class="form-group">
             <label class="control-label col-md-2" for="Email">Email</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -58,10 +58,26 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2" for="AddressForMap">Địa chỉ(để hiển thị bản đồ)</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AddressForMap, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AddressForMap, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label col-md-2" for="City">Thành phố</label>
             <div class="col-md-10">
                 @Html.DropDownList("City", ViewBag.City as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="TradeId">Ngành nghề</label>
+            <div class="col-md-10">
+                @Html.DropDownList("TradeId", ViewBag.TradeId as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TradeId, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -86,14 +102,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Website, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Website, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Status">Tình trạng</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
 

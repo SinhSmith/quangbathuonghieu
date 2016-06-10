@@ -20,6 +20,7 @@ namespace Portal.Core.Database
         public Nullable<System.Guid> ImageCover { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string AddressForMap { get; set; }
         public Nullable<System.Guid> City { get; set; }
         public string Phone { get; set; }
         public string Director { get; set; }

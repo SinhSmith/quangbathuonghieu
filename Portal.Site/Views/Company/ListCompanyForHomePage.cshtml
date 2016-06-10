@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
             <div class="enterpriseLogo">
                 <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">
-                    <img src="http://quangbathuonghieuviet.vn/data/enterprise/200/59e88b3ca99b43d3308cd568473cfba0.png" alt="@company.Name" />
+                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : string.Empty)" alt="@company.Name" style="height: 163px; width: 100%;" />
                 </a>
             </div>
             <div class="enterpriseInfo">

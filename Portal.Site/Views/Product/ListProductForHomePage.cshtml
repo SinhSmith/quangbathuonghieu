@@ -3,44 +3,46 @@
 
 @model IPagedList<Portal.Core.Database.Product>
 
-<div class="boxItem">
-    <h1 class="title">Sản phẩm <span class="numpost">(Có @Model.TotalItemCount.ToString() sản phẩm)</span></h1>
-    <div class="boxContent">
-        <div class="row">
-            @foreach (var product in Model)
-            {
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://quangbathuonghieuviet.vn/data/post/500/02fbefc628007d7961d038331c67a008.jpg" alt="">
-                        <div class="caption">
-                            <h4 class="pull-right">@(product.Price.HasValue ? product.Price.Value.ToString("N0") : "0") VNĐ</h4>
-                            <h4>
-                                <a href="@Url.Action("Details", "Product", new { id = product.Ranking })">@product.Name</a>
-                            </h4>
-                            <p>@product.Description</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">@product.CountView.ToString() lượt xem</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
+    <div class="boxItem">
+        <h1 class="title">Sản phẩm <span class="numpost">(Có @Model.TotalItemCount.ToString() sản phẩm)</span></h1>
+        <div class="boxContent">
+            <div class="row">
+                @foreach (var product in Model)
+                {
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <a href="@Url.Action("Details", "Product", new { id = product.Ranking })">
+                                <img src="@(product.Image != null ? product.Image.FilePath + "/" + product.Image.FileName : string.Empty)" alt="" style="width: 250px;height:230px; ">
+                            </a>
+                            <div class="caption">
+                                <h4 class="pull-right">@(product.Price.HasValue ? product.Price.Value.ToString("N0") : "0") VNĐ</h4>
+                                <h4>
+                                    <a href="@Url.Action("Details", "Product", new { id = product.Ranking })">@product.Name</a>
+                                </h4>
+                                @*<p>@product.Description</p>*@
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">@product.CountView.ToString() lượt xem</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
-        </div>
-        <div class="text-center">
-            @Html.PagedListPager(Model, page =>
+                }
+            </div>
+            <div class="text-center">
+                @Html.PagedListPager(Model, page =>
                                 Url.Action("Index", new
                                 {
                                     page,
                                     keyword = Request.QueryString["keyword"],
                                 }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+            </div>
         </div>
     </div>
-</div>
-<!--End Box-->
+    <!--End Box-->

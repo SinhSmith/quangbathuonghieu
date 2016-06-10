@@ -64,26 +64,20 @@ namespace Portal.Site.Controllers
                 };
                 _menu4.ChildMenuItems.Add(new MenuItem()
                 {
-                    MenuItemName = "Quản lý tin tuyển dụng",
-                    MenuItemPath = "/quan-ly-tin-tuyen-dung",
-                    IconClass = "glyphicon-plus"
-                });
-                _menu4.ChildMenuItems.Add(new MenuItem()
-                {
-                    MenuItemName = "Duyệt tin tuyển dụng",
-                    MenuItemPath = "/danh-sach-tuyen-dung",
+                    MenuItemName = "Quản lý danh mục doanh nghiệp",
+                    MenuItemPath = "/quan-ly-doanh-nghiep",
                     IconClass = "glyphicon-th-list"
                 });
                 _menu4.ChildMenuItems.Add(new MenuItem()
                 {
-                    MenuItemName = "Quản lý nhà tuyển dụng",
-                    MenuItemPath = "/quan-ly-nha-tuyen-dung",
+                    MenuItemName = "Quản lý danh mục sản phẩm",
+                    MenuItemPath = "/quan-ly-san-pham",
                     IconClass = "glyphicon-th-list"
                 });
                 _menu4.ChildMenuItems.Add(new MenuItem()
                 {
-                    MenuItemName = "Duyệt nhà tuyển dụng",
-                    MenuItemPath = "/duyet-nha-tuyen-dung",
+                    MenuItemName = "Quản lý người dùng",
+                    MenuItemPath = "/quan-ly-nguoi-dung",
                     IconClass = "glyphicon-th-list"
                 });
 
