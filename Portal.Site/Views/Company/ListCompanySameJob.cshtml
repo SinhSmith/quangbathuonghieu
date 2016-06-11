@@ -1,17 +1,17 @@
 ﻿@model List<Portal.Core.Database.Company>
 
-<div>
+<div class="row">
     @foreach (var company in Model)
 {
-    <div class="col-lg-6 col-md-6 col-xs-6 col-padding-sm">
+    <div class="col-lg-6 col-md-6 col-xs-6">
         <div class="enterprise">
             <h3 class="title">
-                <a href="#" title="@company.Name">@company.Name</a>
+                <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">@company.Name</a>
             </h3>
             <div class="clearfix"></div>
             <div class="enterpriseLogo">
                 <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">
-                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : string.Empty)" alt="@company.Name" style="height: 163px; width: 100%;" />
+                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)" alt="@company.Name" style="height: 163px; width: 100%;" />
                 </a>
             </div>
             <div class="enterpriseInfo">

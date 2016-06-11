@@ -5,7 +5,7 @@
     <div class="boxContent">
         <div class="row">
             <div class="col-md-4">
-                <img style="width: 310px;max-width: none; height: 200px;" src="@(Model.Image != null ? Model.Image.FilePath + "/" + Model.Image.FileName : string.Empty)">
+                <img style="width: 310px;max-width: none; height: 200px;" src="@(Model.Image != null ? Model.Image.FilePath + "/" + Model.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)">
             </div>
             <div class="col-md-8">
                 <dl class="dl-horizontal">
@@ -21,12 +21,42 @@
 
                     <dt>Thành phố:</dt>
                     <dd>
-                        @Html.DisplayFor(model => model.City)
+                        @{
+                            if (Model.City.HasValue)
+                            {
+                                var city = Portal.Core.Service.CategoryService.GetCategoryById(Model.City.Value);
+                                if (city != null)
+                                {
+                                    <span>@city.Name</span>
+                                }
+                            }
+                        }
+                    </dd>
+
+                    <dt>Ngành nghề:</dt>
+                    <dd>
+                        @{
+                            if (Model.TradeId.HasValue)
+                            {
+                                var trade = Portal.Core.Service.CategoryService.GetCategoryById(Model.TradeId.Value);
+                                if (trade != null)
+                                {
+                                    <span>@trade.Name</span>
+                                }
+                            }
+                        }
                     </dd>
 
                     <dt>Điện thoại:</dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Phone)
+                        @if (Request.IsAuthenticated)
+                        {
+                            @Html.DisplayFor(model => model.Phone)
+                        }
+                        else
+                        {
+                            <a data-target="#modalRegister" data-toggle="modal" href="#">Đăng ký</a><span> thành viên để xem thông tin</span>
+                        }
                     </dd>
 
                     <dt>Giám đốc:</dt>

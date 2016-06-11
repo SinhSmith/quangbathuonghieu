@@ -7,7 +7,8 @@ namespace Portal.Core.Util
 {
     public class Define
     {
-        public static string RootUrl = "http://zody.vn/";
+        public static string RootUrl = "http://uytinviet.com.vn/";
+        public static string DefaultImageUrl = "/Images/no-logo.png";
         public enum UserRole
         {
             NotSet = 0,

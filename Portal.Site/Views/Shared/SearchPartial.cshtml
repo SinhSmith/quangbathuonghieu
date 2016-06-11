@@ -1,18 +1,31 @@
-﻿<div class="boxItem">
+﻿<script>
+    $(document).ready(function () {
+        $('.cityChoose').select2({ placeholder: "Chọn địa điểm" });
+        $('.tradeChoose').select2({ placeholder: "Chọn ngành nghề" });
+    });
+</script>
+<div class="boxItem">
     <h1 class="title">Tìm kiếm</h1>
     <div class="boxContent">
         <div class="panel panel-default">
             <div class="panel-body">
-                @using (Html.BeginForm("List", "Company", FormMethod.Get, new { id = "form-Company" }))
+                @using (Html.BeginForm("List", "Company", FormMethod.Get, new { id = "form-Search" }))
                 {
                     <div class="form-group">
-                        @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Nhập nội dung tìm kiếm" })
+                        @Html.RadioButton("searchBy", true, true, new { @id = "searchByCompany" })
+                        <label for="searchByCompany">Doanh nghiệp</label>
+
+                        @Html.RadioButton("searchBy", false, false, new { @id = "searchByProduct" })
+                        <label for="searchByProduct">Sản phẩm</label>
                     </div>
                     <div class="form-group">
-                        @Html.DropDownList("city", ViewBag.City as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
+                        @Html.TextBox("keyword", null, new { @class = "form-control", placeholder = "Nhập nội dung tìm kiếm", value = ViewBag.keyword })
                     </div>
                     <div class="form-group">
-                        @Html.DropDownList("trade", ViewBag.Trade as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control" })
+                        @Html.DropDownList("city", ViewBag.City as List<SelectListItem>, "Vui lòng chọn", new { @class = "form-control cityChoose" })
+                    </div>
+                    <div class="form-group">
+                        @Html.DropDownList("trade", ViewBag.Trade as List<SelectListItem>, "Chọn ngành nghề", new { @class = "form-control tradeChoose" })
                     </div>
                     <div class="form-group">
                         <button class="btn-search btn btn-primary" type="submit">

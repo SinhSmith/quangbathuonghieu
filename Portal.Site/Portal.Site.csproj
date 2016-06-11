@@ -503,8 +503,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\login-bg.jpg" />
+    <Content Include="Images\banner.jpg" />
     <Content Include="Images\logo.png" />
+    <Content Include="Images\no-logo.png" />
     <Content Include="Images\page-not-found-404.png" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -536,6 +537,7 @@
     <Content Include="Content\ckeditor\plugins\wsc\LICENSE.md" />
     <Content Include="Content\ckeditor\plugins\wsc\README.md" />
     <Content Include="Content\ckeditor\samples\old\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <None Include="Properties\PublishProfiles\portal.cms.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -607,6 +609,8 @@
     <Content Include="Views\Shared\SearchPartial.cshtml" />
     <Content Include="Views\Company\List.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Product\ListProductSameJob.cshtml" />
+    <Content Include="Views\Product\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

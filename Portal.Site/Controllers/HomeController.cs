@@ -28,10 +28,27 @@ namespace Portal.Site.Controllers
         public ActionResult SearchPartial()
         {
             var cities = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.City);
-            ViewBag.City = new SelectList(cities, "Id", "Name");
+            if (Request.QueryString["city"] != null)
+            {
+                ViewBag.City = new SelectList(cities, "Id", "Name", Request.QueryString["city"].ToString());
+            }
+            else
+            {
+                ViewBag.City = new SelectList(cities, "Id", "Name");
+            }
 
             var trades = Core.Service.CategoryService.GetCategoryByType((int)Core.Service.BaseService.CategoryType.Trades);
-            ViewBag.Trade = new SelectList(trades, "Id", "Name");
+            if (Request.QueryString["trade"] != null)
+            {
+                ViewBag.Trade = new SelectList(trades, "Id", "Name", Request.QueryString["trade"].ToString());
+            }
+            else
+            {
+                ViewBag.Trade = new SelectList(trades, "Id", "Name");
+            }
+
+            if (Request.QueryString["keyword"] != null)
+                ViewBag.keyword = Request.QueryString["keyword"].ToString();
 
             return PartialView();
         }
