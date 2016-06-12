@@ -30,7 +30,7 @@ namespace Portal.Site.Controllers
         public ActionResult ListCompanyForHomePage(int page = 1)
         {
             var companies = db.Companies.Where(x => x.Status == (int)Portal.Core.Util.Define.Status.Active).OrderByDescending(x => x.CreatedDate);
-            return PartialView(companies.ToList().ToPagedList(page, 10));
+            return PartialView(companies.ToList().ToPagedList(page, 50));
         }
 
         // GET: ListCompanySameJob

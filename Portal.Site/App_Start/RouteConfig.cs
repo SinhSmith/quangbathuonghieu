@@ -21,7 +21,7 @@ namespace Portal.Site
             routes.MapRoute(name: "Company", url: "quan-ly-doanh-nghiep", defaults: new { controller = "Company", action = "Index" });
             routes.MapRoute(name: "Product", url: "quan-ly-san-pham", defaults: new { controller = "Product", action = "Index" });
 
-            //routes.MapRoute(name: "User", url: "quan-ly-nguoi-dung", defaults: new { controller = "User", action = "Index" });
+            routes.MapRoute(name: "User", url: "quan-ly-nguoi-dung", defaults: new { controller = "Profile", action = "Index" });
 
             routes.MapRoute(
                 name: "Default",

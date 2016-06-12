@@ -43,7 +43,7 @@ namespace Portal.Site
                       "~/Content/error404.css"));
 
             //Minimize css and js files
-            //BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

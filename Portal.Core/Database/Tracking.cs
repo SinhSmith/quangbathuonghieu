@@ -12,15 +12,9 @@ namespace Portal.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Profile
+    public partial class Tracking
     {
-        public System.Guid Id { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string Address { get; set; }
-        public Nullable<System.Guid> City { get; set; }
-        public Nullable<System.Guid> District { get; set; }
-        public string Phone { get; set; }
-        public Nullable<int> Status { get; set; }
+        public string Url { get; set; }
+        public Nullable<int> TotalVisitors { get; set; }
     }
 }

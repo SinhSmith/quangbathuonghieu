@@ -4,14 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="314d7fcf9e754b1f93c4bfc8015c0f41" Name="Diagram1">
+      <Diagram DiagramId="314d7fcf9e754b1f93c4bfc8015c0f41" Name="Diagram1" ZoomLevel="63">
         <EntityTypeShape EntityType="PortalModel.Category" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PortalModel.Image" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PortalModel.Profile" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="PortalModel.Company" Width="1.5" PointX="3" PointY="16" />
         <EntityTypeShape EntityType="PortalModel.Product" Width="1.5" PointX="3" PointY="10.75" />
         <AssociationConnector Association="PortalModel.FK_Company_Image" />
         <AssociationConnector Association="PortalModel.FK_Product_Image" />
+        <EntityTypeShape EntityType="PortalModel.Tracking" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PortalModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PortalModel.AspNetUser" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

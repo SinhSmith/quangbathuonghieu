@@ -41,7 +41,7 @@
             </div>
             <div class="text-center">
                 @Html.PagedListPager(Model, page =>
-                                Url.Action("Index", new
+                                Url.Action("List", new
                                 {
                                     page,
                                     keyword = Request.QueryString["keyword"],

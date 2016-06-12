@@ -30,7 +30,7 @@ namespace Portal.Site.Controllers
         public ActionResult ListProductForHomePage(string keyword, int page = 1)
         {
             var products = db.Products.Where(x => string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword)).OrderByDescending(x => x.CreatedDate);
-            return PartialView(products.ToList().ToPagedList(page, 10));
+            return PartialView(products.ToList().ToPagedList(page, 50));
         }
 
         // GET: ListProductSameJob

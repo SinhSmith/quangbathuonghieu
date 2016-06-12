@@ -3,11 +3,37 @@
     ViewBag.Title = "Đăng ký thành viên";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#registerForm").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                    } else {
+                        $("#errorMessageRegister").text(result.message);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 <div id="register-panel">
-    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", name = "registerForm", @class = "form-horizontal" }))
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id="registerForm", role = "form", name = "registerForm", @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary("", new { @class = "text-danger" })
+        <span id="errorMessageRegister" class="text-danger"></span>
         
         <div class="form-group">
             @Html.LabelFor(m => m.UserName, new { @class = "col-md-3 control-label" })
@@ -74,9 +100,9 @@
         <div class="form-group">
             <div class="col-md-offset-3 col-md-9">
                 <input type="submit" class="btn btn-primary" value="ĐĂNG KÝ" />
-                <p>
+                @*<p>
                     <a href="#" id="forgotPasswordLink" data-bind>Quên mật khẩu</a>
-                </p>
+                </p>*@
             </div>
         </div>
     }

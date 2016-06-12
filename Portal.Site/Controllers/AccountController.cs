@@ -23,7 +23,7 @@ namespace Portal.Site.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -35,9 +35,9 @@ namespace Portal.Site.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -71,7 +71,8 @@ namespace Portal.Site.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return PartialView(model);
+                return Json(new { success = false, message = "Có lỗi xảy ra." });
+                //return PartialView(model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -80,15 +81,17 @@ namespace Portal.Site.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    return Json(new { success = true });
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return PartialView(model);
+                    //ModelState.AddModelError("", "Invalid login attempt.");
+                    //return PartialView(model);
+                    return Json(new { success = false, message = "Địa chỉ email và mật khẩu không đúng." });
             }
         }
 
@@ -121,7 +124,7 @@ namespace Portal.Site.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -159,21 +162,48 @@ namespace Portal.Site.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    // Profile
+                    using (var db = new Portal.Core.Database.PortalEntities())
+                    {
+                        var profile = new Portal.Core.Database.Profile
+                        {
+                            Id = Guid.Parse(user.Id),
+                            Email = model.Email,
+                            Password = model.Password,
+                            Address = model.Address,
+                            City = model.City,
+                            Phone = model.Phone
+                        };
+                        db.Profiles.Add(profile);
+                        db.SaveChanges();
+                    }
+
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
+                    return Json(new { success = true });
                 }
-                AddErrors(result);
+                else
+                {
+                    string errors = "";
+                    foreach (var error in result.Errors)
+                    {
+                        errors += error;
+                    }
+                    return Json(new { success = false, message = errors });
+                }
+                //AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return PartialView(model);
+            return Json(new { success = false, message = "Có lỗi xảy ra, vui lòng thử lại." });
+            //return PartialView(model);
         }
 
         //

@@ -4,11 +4,37 @@
     ViewBag.Title = "Đăng nhập tài khoản";
 }
 
+<script>
+    $(document).ready(function () {
+        $("#loginForm").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                    } else {
+                        $("#errorMessageLogin").text(result.message);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
 <div id="login-panel">
-    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form", name = "loginForm", @class = "form-horizontal" }))
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id="loginForm", role = "form", name = "loginForm", @class = "form-horizontal" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <span id="errorMessageLogin" class="text-danger"></span>
 
         <div class="form-group">
             @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })

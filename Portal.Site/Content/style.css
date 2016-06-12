@@ -360,13 +360,13 @@ span.numpost {
     }
 }
 
-@media screen and (max-width:600px) {
+/*@media screen and (max-width:600px) {
     .headerLeft, .headerRight {
         float: none;
         width: 100%;
         text-align: center;
     }
-}
+}*/
 
 @media screen and (max-width:450px) {
     .enterprise {
@@ -420,4 +420,8 @@ span.numpost {
 .col-padding-sm {
     padding-right: 5px;
     padding-left: 5px;
+}
+
+.boxContent .thumbnail {
+    height: 320px;
 }

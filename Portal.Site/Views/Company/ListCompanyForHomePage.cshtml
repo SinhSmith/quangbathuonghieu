@@ -17,7 +17,7 @@
             <div class="clearfix"></div>
             <div class="enterpriseLogo">
                 <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">
-                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)" alt="@company.Name" style="height: 163px; width: 100%;" />
+                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)" alt="@company.Name" style="height: 130px; width: 100%;" />
                 </a>
             </div>
             <div class="enterpriseInfo">
@@ -49,7 +49,7 @@
         </div>
         <div class="text-center">
             @Html.PagedListPager(Model, page =>
-                                Url.Action("Index", new
+                                Url.Action("ListCompanyForHomePage", new
                                 {
                                     page,
                                     keyword = Request.QueryString["keyword"],

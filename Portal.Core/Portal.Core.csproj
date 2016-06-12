@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\AspNetUser.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Category.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -80,8 +83,12 @@
     <Compile Include="Database\Profile.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Tracking.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\TrackingService.cs" />
     <Compile Include="Service\CategoryService.cs" />
     <Compile Include="Util\Common.cs" />
     <Compile Include="Util\Define.cs" />
