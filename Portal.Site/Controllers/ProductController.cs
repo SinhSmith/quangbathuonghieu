@@ -118,6 +118,7 @@ namespace Portal.Site.Controllers
                     product.ImageCover = imageCover;
                 product.Status = (int)Portal.Core.Util.Define.Status.Active;
                 product.CreatedDate = DateTime.Now;
+                product.CountView = new Random().Next(200, 1000);
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -151,7 +152,7 @@ namespace Portal.Site.Controllers
         // POST: Product/Edit/5
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Address,AddressForMap,City,TradeId,Phone,Description")] Product product, HttpPostedFileBase uploadFile)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Address,AddressForMap,City,TradeId,Phone,Description,CountView")] Product product, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
@@ -190,6 +191,7 @@ namespace Portal.Site.Controllers
                 productOld.TradeId = product.TradeId;
                 productOld.Phone = product.Phone;
                 productOld.Description = product.Description;
+                productOld.CountView = product.CountView;
                 if (imageCover != Guid.Empty)
                     productOld.ImageCover = imageCover;
 

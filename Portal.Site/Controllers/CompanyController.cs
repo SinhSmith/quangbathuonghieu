@@ -118,6 +118,7 @@ namespace Portal.Site.Controllers
                     company.ImageCover = imageCover;
                 company.Status = (int)Portal.Core.Util.Define.Status.Active;
                 company.CreatedDate = DateTime.Now;
+                company.CountView = new Random().Next(200, 1000);
                 db.Companies.Add(company);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -151,7 +152,7 @@ namespace Portal.Site.Controllers
         // POST: Company/Edit/5
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Email,Address,AddressForMap,City,TradeId,Phone,Director,Website,Description")] Company company, HttpPostedFileBase uploadFile)
+        public ActionResult Edit([Bind(Include = "Id,Name,Email,Address,AddressForMap,City,TradeId,Phone,Director,Website,Description,CountView")] Company company, HttpPostedFileBase uploadFile)
         {
             if (ModelState.IsValid)
             {
@@ -192,6 +193,7 @@ namespace Portal.Site.Controllers
                 companyOld.Director = company.Director;
                 companyOld.Website = company.Website;
                 companyOld.Description = company.Description;
+                companyOld.CountView = company.CountView;
                 if (imageCover != Guid.Empty)
                     companyOld.ImageCover = imageCover;
 

@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    $(function () { $("#to_top").click(function () { $("body,html").animate({ scrollTop: 0 }, "normal") }) })
+
     var footer = $("footer");
     if ($(window).height() - $("footer").offset().top > 0) {
         footer.css("position", "absolute").css("bottom", "0");

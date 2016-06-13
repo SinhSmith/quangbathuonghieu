@@ -504,6 +504,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\banner.png" />
+    <Content Include="Images\icon_gototop.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\no-logo.png" />
     <Content Include="Images\page-not-found-404.png" />

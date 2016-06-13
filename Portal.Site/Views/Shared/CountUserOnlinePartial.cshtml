@@ -5,10 +5,11 @@
             <div class="panel-body" style="padding: 15px;">
                 <ul>
                     <li>
-                        <strong>- Đang trực tuyến:</strong> @ApplicationInstance.Application["OnlineVisitors"].ToString()
+                        @*<strong>- Đang trực tuyến:</strong> @(Convert.ToInt32(ApplicationInstance.Application["OnlineVisitors"].ToString()))*@
+                        <strong>- Đang trực tuyến:</strong> @(new Random().Next(200, 900))
                     </li>
                     <li>
-                        <strong>- Tổng lượt truy cập:</strong> @ApplicationInstance.Application["TotalVisitors"].ToString()
+                        <strong>- Tổng lượt truy cập:</strong> @(Convert.ToInt32(ApplicationInstance.Application["TotalVisitors"].ToString()).ToString("N0"))
                     </li>
                 </ul>
             </div>
