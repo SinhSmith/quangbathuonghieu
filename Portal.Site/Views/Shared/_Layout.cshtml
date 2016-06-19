@@ -19,10 +19,12 @@
     <link rel="icon" type="image/ico" href="~/favicon.ico">
 
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bxslider")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/main")
+    @Scripts.Render("~/bundles/bxslider")
     @RenderSection("scripts", required: false)
 
     <script>
@@ -73,12 +75,7 @@
                     <a href="#"><img src="/images/logo.png" /></a>
                 </div>
                 <div class="headerRight">
-                    <div class="">
-                        <div class="boxContent">
-                            <p><img alt="" src="/images/banner.png" style="height:175px; width:100%;" /></p>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+                    @Html.Action("BannerPartial", "Home")
                 </div>
             </div>
         </header>

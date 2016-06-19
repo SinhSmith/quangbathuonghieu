@@ -432,3 +432,9 @@ span.numpost {
     right: 20px;
     z-index: 9999;
 }
+
+.bx-wrapper .bx-viewport {
+    box-shadow: none !important;
+    border: none !important;
+    left: 0px !important;
+}

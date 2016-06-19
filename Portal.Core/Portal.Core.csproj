@@ -53,6 +53,9 @@
     <Compile Include="Database\AspNetUser.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Database\Banner.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Database\Category.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>

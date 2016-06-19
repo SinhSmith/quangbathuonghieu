@@ -12,21 +12,14 @@ namespace Portal.Core.Database
     using System;
     using System.Collections.Generic;
     
-    public partial class Image
+    public partial class Banner
     {
-        public Image()
-        {
-            this.Companies = new HashSet<Company>();
-            this.Products = new HashSet<Product>();
-            this.Banners = new HashSet<Banner>();
-        }
-    
         public System.Guid Id { get; set; }
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.Guid> ImageId { get; set; }
+        public Nullable<int> SortOrder { get; set; }
+        public Nullable<int> Status { get; set; }
     
-        public virtual ICollection<Company> Companies { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Banner> Banners { get; set; }
+        public virtual Image Image { get; set; }
     }
 }

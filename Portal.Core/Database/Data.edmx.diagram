@@ -14,6 +14,8 @@
         <EntityTypeShape EntityType="PortalModel.Tracking" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="PortalModel.Profile" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="PortalModel.AspNetUser" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PortalModel.Banner" Width="1.5" PointX="3" PointY="6.5" />
+        <AssociationConnector Association="PortalModel.fk_Banner_Image" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

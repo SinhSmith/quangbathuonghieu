@@ -176,6 +176,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -495,6 +496,13 @@
     <Content Include="Content\ckeditor\styles.js" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\error404.css" />
+    <Content Include="Content\jquery.bxslider\images\bx_loader.gif" />
+    <Content Include="Content\jquery.bxslider\images\controls.png" />
+    <Content Include="Content\jquery.bxslider\jquery.bxslider.css" />
+    <Content Include="Content\jquery.bxslider\jquery.bxslider.js" />
+    <Content Include="Content\jquery.bxslider\jquery.bxslider.min.js" />
+    <Content Include="Content\jquery.bxslider\plugins\jquery.easing.1.3.js" />
+    <Content Include="Content\jquery.bxslider\plugins\jquery.fitvids.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\select2.css" />
     <Content Include="Content\style.css" />
@@ -554,6 +562,7 @@
     <Content Include="Scripts\select2\i18n\vi.js" />
     <Content Include="Scripts\select2\select2.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Uploads\Banner\3c353984-636f-4450-95ac-98305b52baba\banner.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -620,9 +629,17 @@
     <Content Include="Views\Profile\Edit.cshtml" />
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\Shared\CountUserOnlinePartial.cshtml" />
+    <Content Include="Views\Banner\Create.cshtml" />
+    <Content Include="Views\Banner\Delete.cshtml" />
+    <Content Include="Views\Banner\Details.cshtml" />
+    <Content Include="Views\Banner\Edit.cshtml" />
+    <Content Include="Views\Banner\Index.cshtml" />
+    <Content Include="Views\Home\BannerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\Company\" />
+    <Folder Include="Uploads\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

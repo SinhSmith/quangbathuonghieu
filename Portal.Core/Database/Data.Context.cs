@@ -32,5 +32,6 @@ namespace Portal.Core.Database
         public virtual DbSet<Tracking> Trackings { get; set; }
         public virtual DbSet<Profile> Profiles { get; set; }
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+        public virtual DbSet<Banner> Banners { get; set; }
     }
 }

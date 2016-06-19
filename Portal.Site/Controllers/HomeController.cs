@@ -53,6 +53,12 @@ namespace Portal.Site.Controllers
             return PartialView();
         }
 
+        public ActionResult BannerPartial()
+        {
+            var banners = db.Banners.Where(x => x.Status == (int)Portal.Core.Util.Define.Status.Active).OrderBy(x => x.SortOrder);
+            return PartialView(banners.ToList());
+        }
+
         public ActionResult CountUserOnlinePartial()
         {
             return PartialView();
@@ -63,6 +69,15 @@ namespace Portal.Site.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
         [ChildActionOnly]
@@ -100,6 +115,12 @@ namespace Portal.Site.Controllers
                 {
                     MenuItemName = "Quản lý người dùng",
                     MenuItemPath = "/quan-ly-nguoi-dung",
+                    IconClass = "glyphicon-th-list"
+                });
+                _menu4.ChildMenuItems.Add(new MenuItem()
+                {
+                    MenuItemName = "Quản lý banner",
+                    MenuItemPath = "/quan-ly-banner",
                     IconClass = "glyphicon-th-list"
                 });
 

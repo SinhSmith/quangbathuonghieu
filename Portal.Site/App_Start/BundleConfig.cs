@@ -42,6 +42,12 @@ namespace Portal.Site
             bundles.Add(new StyleBundle("~/Content/Error").Include(
                       "~/Content/error404.css"));
 
+            bundles.Add(new StyleBundle("~/Content/bxslider").Include(
+                      "~/Content/jquery.bxslider/jquery.bxslider.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bxslider").Include(
+                      "~/Content/jquery.bxslider/jquery.bxslider.js"));
+
             //Minimize css and js files
             BundleTable.EnableOptimizations = true;
         }

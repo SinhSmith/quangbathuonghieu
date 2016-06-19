@@ -22,6 +22,16 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
         </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ImageId" Type="uniqueidentifier" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -107,6 +117,18 @@
           <Property Name="Url" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="TotalVisitors" Type="int" />
         </EntityType>
+        <Association Name="fk_Banner_Image">
+          <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
+          <End Role="Banner" Type="Self.Banner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Banner">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Company_Image">
           <End Role="Image" Type="Self.Image" Multiplicity="0..1" />
           <End Role="Company" Type="Self.Company" Multiplicity="*" />
@@ -133,12 +155,17 @@
         </Association>
         <EntityContainer Name="PortalModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tracking" EntityType="Self.Tracking" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Banner_Image" Association="Self.fk_Banner_Image">
+            <End Role="Image" EntitySet="Image" />
+            <End Role="Banner" EntitySet="Banner" />
+          </AssociationSet>
           <AssociationSet Name="FK_Company_Image" Association="Self.FK_Company_Image">
             <End Role="Image" EntitySet="Image" />
             <End Role="Company" EntitySet="Company" />
@@ -172,6 +199,7 @@
           <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Companies" Relationship="PortalModel.FK_Company_Image" FromRole="Image" ToRole="Company" />
           <NavigationProperty Name="Products" Relationship="PortalModel.FK_Product_Image" FromRole="Image" ToRole="Product" />
+          <NavigationProperty Name="Banners" Relationship="PortalModel.fk_Banner_Image" FromRole="Image" ToRole="Banner" />
           </EntityType>
         <EntityContainer Name="PortalEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -189,6 +217,11 @@
           <EntitySet Name="Trackings" EntityType="PortalModel.Tracking" />
           <EntitySet Name="Profiles" EntityType="PortalModel.Profile" />
           <EntitySet Name="AspNetUsers" EntityType="PortalModel.AspNetUser" />
+          <EntitySet Name="Banners" EntityType="PortalModel.Banner" />
+          <AssociationSet Name="fk_Banner_Image" Association="PortalModel.fk_Banner_Image">
+            <End Role="Image" EntitySet="Images" />
+            <End Role="Banner" EntitySet="Banners" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Company">
           <Key>
@@ -299,6 +332,29 @@
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImageId" Type="Guid" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Image" Relationship="PortalModel.fk_Banner_Image" FromRole="Banner" ToRole="Image" />
+        </EntityType>
+        <Association Name="fk_Banner_Image">
+          <End Type="PortalModel.Image" Role="Image" Multiplicity="0..1" />
+          <End Type="PortalModel.Banner" Role="Banner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Image">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Banner">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -410,6 +466,17 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="PortalModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
