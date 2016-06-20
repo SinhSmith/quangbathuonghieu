@@ -10,11 +10,51 @@ using Portal.Core.Database;
 using Microsoft.AspNet.Identity;
 using Portal.Site.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 
 namespace Portal.Site.Controllers
 {
     public class ProfileController : Controller
     {
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        public ProfileController()
+        {
+        }
+
+        public ProfileController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
         private PortalEntities db = new PortalEntities();
 
         // GET: /Profie/
@@ -41,25 +81,69 @@ namespace Portal.Site.Controllers
         // GET: /Profie/Create
         public ActionResult Create()
         {
+            var city = Portal.Core.Service.CategoryService.GetCities();
+            ViewBag.City = new SelectList(city, "Id", "Name");
+
             return View();
         }
 
         // POST: /Profie/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Email,Password,Address,City,District,Phone")] Profile profile)
+        public ActionResult Create([Bind(Include = "Email,Password,Address,City,District,Phone")] Profile model)
         {
             if (ModelState.IsValid)
             {
-                profile.Id = Guid.NewGuid();
-                db.Profiles.Add(profile);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = UserManager.Create(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // Profile
+                    using (var db = new Portal.Core.Database.PortalEntities())
+                    {
+                        var profile = new Portal.Core.Database.Profile
+                        {
+                            Id = Guid.Parse(user.Id),
+                            Email = model.Email,
+                            Password = model.Password,
+                            Address = model.Address,
+                            City = model.City,
+                            Phone = model.Phone,
+                            Status = (int)Portal.Core.Util.Define.Status.Active
+                        };
+                        db.Profiles.Add(profile);
+
+                        var company = new Portal.Core.Database.Company
+                        {
+                            Id = Guid.NewGuid(),
+                            Name = "",
+                            Address = model.Address,
+                            AddressForMap = model.Address,
+                            City = model.City,
+                            Phone = model.Phone,
+                            Status = (int)Portal.Core.Util.Define.Status.Pending,
+                            CreatedBy = profile.Id,
+                            CreatedDate = DateTime.Now,
+                            CountView = new Random().Next(200, 1000)
+                        };
+                        db.Companies.Add(company);
+                        db.SaveChanges();
+                    }
+
+                    return RedirectToAction("Index", "Profile");
+                }
+                else
+                {
+                    string errors = "";
+                    foreach (var error in result.Errors)
+                    {
+                        errors += error;
+                    }
+                    return Json(new { success = false, message = errors });
+                }
             }
 
-            return View(profile);
+            return View();
         }
 
         // GET: /Profie/Edit/5
@@ -119,7 +203,7 @@ namespace Portal.Site.Controllers
 
             Profile profile = db.Profiles.Find(id);
             //db.Profiles.Remove(profile);
-            profile.Status = (int)Portal.Core.Util.Define.Status.DeActive;
+            profile.Status = (int)Portal.Core.Util.Define.Status.Delete;
             db.SaveChanges();
 
             //return RedirectToAction("Index");

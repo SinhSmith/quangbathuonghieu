@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Portal.Core.Database;
 using PagedList;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace Portal.Site.Controllers
 {
@@ -45,7 +46,7 @@ namespace Portal.Site.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult Index(string keyword)
         {
-            var companies = db.Companies.Where(x => x.Status == (int)Portal.Core.Util.Define.Status.Active && (string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword))).OrderByDescending(x => x.CreatedDate);
+            var companies = db.Companies.Where(x => (x.Status == (int)Portal.Core.Util.Define.Status.Active || x.Status == (int)Portal.Core.Util.Define.Status.Pending) && (string.IsNullOrEmpty(keyword) || x.Name.Contains(keyword))).OrderByDescending(x => x.CreatedDate);
             return View(companies.ToList());
         }
 
@@ -117,6 +118,7 @@ namespace Portal.Site.Controllers
                 if (imageCover != Guid.Empty)
                     company.ImageCover = imageCover;
                 company.Status = (int)Portal.Core.Util.Define.Status.Active;
+                company.CreatedBy = Guid.Parse(User.Identity.GetUserId());
                 company.CreatedDate = DateTime.Now;
                 company.CountView = new Random().Next(200, 1000);
                 db.Companies.Add(company);
@@ -130,11 +132,21 @@ namespace Portal.Site.Controllers
         // GET: Company/Edit/5
         public ActionResult Edit(Guid? id)
         {
+            Company company = null;
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (User.Identity.IsAuthenticated)
+                {
+                    var userId = Guid.Parse(User.Identity.GetUserId());
+                    company = db.Companies.Include(x => x.Image).FirstOrDefault(x => x.CreatedBy == userId);
+                }
+                else
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Company company = db.Companies.Find(id);
+            else
+            {
+                company = db.Companies.Find(id);
+            }
             if (company == null)
             {
                 return HttpNotFound();
@@ -196,9 +208,17 @@ namespace Portal.Site.Controllers
                 companyOld.CountView = company.CountView;
                 if (imageCover != Guid.Empty)
                     companyOld.ImageCover = imageCover;
+                if (!User.IsInRole("Administrator"))
+                {
+                    company.Status = (int)Portal.Core.Util.Define.Status.Pending;
+                }
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                if (User.IsInRole("Administrator"))
+                    return RedirectToAction("Index");
+                else
+                    return RedirectToAction("Index", "Home");
             }
             return View(company);
         }
@@ -225,7 +245,17 @@ namespace Portal.Site.Controllers
         {
             Company company = db.Companies.Find(id);
             //db.Companies.Remove(company);
-            company.Status = (int)Portal.Core.Util.Define.Status.DeActive;
+            company.Status = (int)Portal.Core.Util.Define.Status.Delete;
+            db.SaveChanges();
+            return Json(new { success = true });
+        }
+
+        // POST: Company/Approve/5
+        [HttpPost, ActionName("Approve")]
+        public ActionResult Approve(Guid id)
+        {
+            Company company = db.Companies.Find(id);
+            company.Status = (int)Portal.Core.Util.Define.Status.Active;
             db.SaveChanges();
             return Json(new { success = true });
         }

@@ -1,0 +1,106 @@
+﻿@model Portal.Core.Database.Company
+
+<div class="boxItem">
+    <h1 class="title">@Model.Name</h1>
+    <div class="boxContent">
+        <div class="row">
+            <div class="col-md-4">
+                <img style="width: 310px;max-width: none; height: 200px;" src="@(Model.Image != null ? Model.Image.FilePath + "/" + Model.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)">
+            </div>
+            <div class="col-md-8">
+                <dl class="dl-horizontal">
+                    <dt>Email:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+
+                    <dt>Địa chỉ:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+
+                    <dt>Thành phố:</dt>
+                    <dd>
+                        @{
+                            if (Model.City.HasValue)
+                            {
+                                var city = Portal.Core.Service.CategoryService.GetCategoryById(Model.City.Value);
+                                if (city != null)
+                                {
+                                    <span>@city.Name</span>
+                                }
+                            }
+                        }
+                    </dd>
+
+                    <dt>Ngành nghề:</dt>
+                    <dd>
+                        @{
+                            if (Model.TradeId.HasValue)
+                            {
+                                var trade = Portal.Core.Service.CategoryService.GetCategoryById(Model.TradeId.Value);
+                                if (trade != null)
+                                {
+                                    <span>@trade.Name</span>
+                                }
+                            }
+                        }
+                    </dd>
+
+                    <dt>Điện thoại:</dt>
+                    <dd>
+                        @if (Request.IsAuthenticated)
+                        {
+                            @Html.DisplayFor(model => model.Phone)
+                        }
+                        else
+                        {
+                            <a data-target="#modalRegister" data-toggle="modal" href="#">Đăng ký</a><span> thành viên để xem thông tin</span>
+                        }
+                    </dd>
+
+                    <dt>Giám đốc:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Director)
+                    </dd>
+
+                    <dt>Website:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Website)
+                    </dd>
+
+                    <dt>Lượt xem:</dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CountView)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="boxItem">
+    <h1 class="title">Thông tin chi tiết</h1>
+    <div class="boxContent">
+        @(Html.Raw(HttpUtility.HtmlDecode(Model.Description)))
+    </div>
+</div>
+
+<div class="boxItem">
+    <h1 class="title">Vị trí bản đồ</h1>
+    <div class="boxContent">
+        <iframe width="702"
+                height="400"
+                frameborder="0" style="border:0"
+                src="@("https://www.google.com/maps/embed/v1/place?key=AIzaSyCNc3-tbL6wTxKnFKq1cWh8wi-nZQJEneA&q=" + Model.AddressForMap)" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="boxItem">
+    <h1 class="title">Doanh nghiệp cùng ngành nghề</h1>
+    <div class="boxContent">
+        @Html.Action("ListCompanySameJob", "Company", new { id = Model.Id })
+    </div>
+</div>    

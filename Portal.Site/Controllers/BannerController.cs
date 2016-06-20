@@ -169,7 +169,7 @@ namespace Portal.Site.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Banner banner = db.Banners.Find(id);
-            banner.Status = (int)Portal.Core.Util.Define.Status.DeActive;
+            banner.Status = (int)Portal.Core.Util.Define.Status.Delete;
             //db.Banners.Remove(banner);
             db.SaveChanges();
             return Json(new { success = true });

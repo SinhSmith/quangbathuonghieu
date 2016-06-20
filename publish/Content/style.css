@@ -1,0 +1,440 @@
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, th, td,
+article, aside, figure, footer, header, hgroup, menu, nav, section,
+summary, hgroup {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+@font-face {
+    font-family: 'RobotoMedium';
+    src: url('../fonts/roboto/Roboto-Medium.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FuturaStdBookRegular';
+    src: url('../fonts/futurastd-book-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@-webkit-viewport {
+    width: device-width;
+}
+
+@-moz-viewport {
+    width: device-width;
+}
+
+@-ms-viewport {
+    width: device-width;
+}
+
+@-o-viewport {
+    width: device-width;
+}
+
+@viewport {
+    width: device-width;
+}
+
+body {
+    color: #333;
+    font-family: Arial, Tahoma, Verdana;
+    font-size: 12px;
+    position: relative;
+    background: #ebebeb;
+}
+
+a {
+    color: #039be5;
+}
+
+    a:hover {
+        text-decoration: none;
+    }
+
+#map-canvas {
+    width: 100%;
+    height: 400px;
+}
+
+#wrapper {
+    position: relative;
+    margin: 0 auto;
+}
+/*-----Header-----*/
+header {
+    box-shadow: 0px 5px 5px -4px #ccc;
+    position: relative;
+    background: #fff;
+}
+
+.headerLeft {
+    width: 20%;
+    float: left;
+    padding: 5px 0;
+}
+
+.headerRight {
+    width: 80%;
+    float: right;
+}
+/*-----Footer-----*/
+footer {
+    position: relative !important;
+    padding: 10px 0;
+    margin-top: 10px;
+    background: #fff;
+}
+
+.footerLeft {
+    width: 50%;
+    float: left;
+}
+
+    .footerLeft h3.title {
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
+
+.tags {
+    background: #f8f8f8;
+}
+
+.footerLeft i.fa {
+    width: 20px;
+    text-align: center;
+}
+
+.navbar {
+    min-height: inherit !important;
+    border-radius: 0;
+}
+
+.navbar-nav > li > a {
+    line-height: 10px;
+}
+
+/*-----pageContent-----*/
+.rowInfo {
+    line-height: 23px;
+}
+
+.pageContent {
+    margin: 15px 0;
+}
+
+.colLeft {
+    width: 75%;
+    float: left;
+}
+
+.colRight {
+    width: 24%;
+    float: right;
+}
+/*-----boxItem-----*/
+.boxItem {
+    /*margin-bottom: 10px;*/
+}
+
+    .boxItem h1.title {
+        font-size: 22px;
+        text-transform: uppercase;
+        margin-bottom: 2px;
+    }
+
+h1.titleTabs {
+    margin: 5px 0;
+    border-bottom: 2px dashed #f2f2f2;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: block;
+    padding-bottom: 5px;
+}
+
+span.numpost {
+    color: #9b9b9b;
+    font-size: 11px;
+    font-weight: 300;
+    text-transform: none;
+}
+
+.boxItem .boxContent {
+    /*background: #fff;*/
+    padding: 10px 0 0 0;
+}
+/*-----Company-----*/
+.enterprise {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    min-height: 171px;
+    border-radius: 4px;
+    border-top: none;
+}
+
+.enterpriseLogo {
+    float: left;
+    padding: 2px;
+    width: 35%;
+}
+
+.enterpriseInfo {
+    width: 64%;
+    float: right;
+}
+
+.enterprise h3.title {
+    font-size: 14px;
+    padding: 5px 0;
+    background: #039be5;
+    padding: 8px;
+    font-weight: bold;
+}
+
+    .enterprise h3.title > a {
+        display: block;
+        color: #fff;
+    }
+
+.rowInfo > i {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+}
+/*-----Pr-----*/
+.itemPr {
+    text-align: center;
+}
+
+    .itemPr h3.title {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+/*-----Custominze Modal-----*/
+.modal-header {
+    background: #039be5;
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 0;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.modal-title {
+    color: #fff;
+}
+
+.modal-width500 {
+    width: 500px;
+}
+
+.btnUser {
+    border: none;
+    outline: none;
+    background: #039be5;
+    padding: 10px 20px;
+    float: right;
+    color: #fff;
+}
+/*-----Form-----*/
+.formResponsive {
+    margin: 10px 0;
+    font-family: 'FuturaStdBookRegular';
+}
+
+.rowForm {
+    position: relative;
+    width: 100%;
+    margin: 10px 0;
+}
+
+    .rowForm label.big {
+        width: 20%;
+        float: left;
+    }
+
+    .rowForm .typeForm {
+        width: 80%;
+        float: left;
+    }
+
+.typeForm input, .typeForm textarea, .typeForm select {
+    width: 100%;
+    resize: none;
+    outline: none;
+    height: 30px;
+}
+
+.formResponsive .error {
+    color: red;
+    padding-top: 5px;
+}
+
+.btnSubmit {
+    background: #039be5;
+    border: none;
+    outline: none;
+    display: block;
+    color: #FFFFFF;
+    margin: 10px auto;
+    transition: all 0.3s linear;
+    padding: 10px 20px;
+}
+
+.show_error {
+    background: none repeat scroll 0 0 #FDD0D0;
+    border: 1px solid #FA789A;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 5px #CCCCCC;
+    margin: 10px 0;
+    padding: 5px;
+    color: red;
+    text-align: center;
+}
+
+.show_success, .show_notice {
+    background: none repeat scroll 0 0 #E7FDD0;
+    border: 1px solid #B9FA78;
+    border-radius: 3px 3px 3px 3px;
+    box-shadow: 0 0 5px #CCCCCC;
+    margin: 10px 0;
+    padding: 5px;
+    text-align: center;
+}
+
+.pages {
+    float: left;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+    .pages .pagebar-mainbody > a {
+        background: #fff;
+        padding: 5px;
+        margin-top: 5px;
+        font-weight: bold;
+        color: #555;
+        border: solid 1px #c9c9c9;
+        display: inline-block;
+        min-width: 13px;
+        border-radius: 2px;
+    }
+
+    .pages .pagebar-selections > span.current {
+        background: #039be5;
+        color: #fff;
+        padding: 5px;
+        margin-top: 5px;
+        font-weight: bold;
+        color: #555;
+        display: inline-block;
+        color: #FFF;
+        min-width: 13px;
+        border-radius: 2px;
+    }
+/*-----Media-----*/
+@media screen and (max-width:992px) {
+    .colLeft, .colRight {
+        float: none;
+        width: 100%;
+    }
+}
+
+/*@media screen and (max-width:600px) {
+    .headerLeft, .headerRight {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+}*/
+
+@media screen and (max-width:450px) {
+    .enterprise {
+        height: auto;
+    }
+
+    .enterpriseInfo, .enterpriseLogo {
+        width: 100%;
+        float: none;
+    }
+}
+
+.boxItem .panel-body {
+    padding: 5px;
+}
+
+.listJob > li {
+    padding: 5px 10px;
+}
+
+    .listJob > li > a {
+        font-size: 12px;
+    }
+
+.panel {
+    border-radius: 0px;
+}
+
+.listCity {
+    height: 420px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+    .listCity::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        background-color: #F5F5F5;
+        border-radius: 10px;
+    }
+
+    .listCity::-webkit-scrollbar {
+        width: 8px;
+        background-color: #F5F5F5;
+    }
+
+    .listCity::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(122,153,217)), color-stop(0.72, rgb(73,125,189)), color-stop(0.86, rgb(28,58,148)));
+    }
+
+.col-padding-sm {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.boxContent .thumbnail {
+    height: 320px;
+}
+
+#to_top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.bx-wrapper .bx-viewport {
+    box-shadow: none !important;
+    border: none !important;
+    left: 0px !important;
+}

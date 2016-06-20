@@ -1,0 +1,64 @@
+﻿@using PagedList.Mvc
+@using PagedList;
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IPagedList<Portal.Core.Database.Company>
+
+<div class="boxItem">
+    <h1 class="title">Doanh nghiệp <span class="numpost">(Có @Model.TotalItemCount.ToString() doanh nghiệp)</span></h1>
+    <div class="boxContent">
+        <div class="row">
+            @foreach (var company in Model)
+{
+    <div class="col-lg-6 col-md-6 col-xs-6">
+        <div class="enterprise">
+            <h3 class="title">
+                <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">@company.Name</a>
+            </h3>
+            <div class="clearfix"></div>
+            <div class="enterpriseLogo">
+                <a href="@Url.Action("Details", "Company", new { id = company.Ranking })" title="@company.Name">
+                    <img src="@(company.Image != null ? company.Image.FilePath + "/" + company.Image.FileName : Portal.Core.Util.Define.DefaultImageUrl)" alt="@company.Name" style="height: 130px; width: 100%;" />
+                </a>
+            </div>
+            <div class="enterpriseInfo">
+                <div class="rowInfo" style="@(string.IsNullOrEmpty(company.Address) ? "display: none": "display: block")">
+                    <i class="glyphicon glyphicon-globe"></i> <span>@company.Address</span>
+                </div>
+                <div class="rowInfo" style="@(string.IsNullOrEmpty(company.Email) ? "display: none": "display: block")">
+                    <i class="glyphicon glyphicon-envelope"></i> <span>@company.Email</span>
+                </div>
+                <div class="rowInfo" style="@(string.IsNullOrEmpty(company.Phone) ? "display: none": "display: block")">
+                    <i class="glyphicon glyphicon-phone"></i>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <span>@company.Phone</span>
+                    }
+                    else
+                    {
+                        <a data-target="#modalRegister" data-toggle="modal" href="#">Đăng ký</a><span> thành viên để xem thông tin</span>
+                    }
+                </div>
+                <div class="rowInfo" style="@(company.CountView == null ? "display: none": "display: block")">
+                    <i class="glyphicon glyphicon-eye-open"></i> <span>@company.CountView</span>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+}
+        </div>
+        <div class="text-center">
+            @Html.PagedListPager(Model, page =>
+                                Url.Action("List", new
+                                {
+                                    page,
+                                    keyword = Request.QueryString["keyword"],
+                                }), PagedListRenderOptions.OnlyShowFivePagesAtATime)
+        </div>
+    </div>
+</div>
+<!--End Box-->

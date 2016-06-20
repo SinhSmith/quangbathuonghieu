@@ -1,0 +1,62 @@
+﻿@using Portal.Site.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Đăng nhập tài khoản";
+}
+
+<script>
+    $(document).ready(function () {
+        $("#loginForm").submit(function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        location.reload();
+                    } else {
+                        $("#errorMessageLogin").text(result.message);
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            return false;
+        });
+    });
+</script>
+
+<div id="login-panel">
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { id="loginForm", role = "form", name = "loginForm", @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <span id="errorMessageLogin" class="text-danger"></span>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Nhập địa chỉ email của bạn", required = "", ng_model = "userData.Email", type = "email", name = "Email", id = "email", autofocus = "0" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Nhập mật khẩu", required = "", name = "Password", type = "password", ng_model = "userData.Password", id = "password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-3 col-md-9">
+                <input type="submit" value="ĐĂNG NHẬP" class="btn btn-primary" />
+                <p>
+                    <a data-target="#modalRegister" data-toggle="modal" href="#" id="registerLink" data-bind>Đăng ký</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>

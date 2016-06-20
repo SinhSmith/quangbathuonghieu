@@ -223,7 +223,7 @@ namespace Portal.Site.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             Product product = db.Products.Find(id);
-            product.Status = (int)Portal.Core.Util.Define.Status.DeActive;
+            product.Status = (int)Portal.Core.Util.Define.Status.Delete;
             //db.Products.Remove(product);
             db.SaveChanges();
             return Json(new { success = true });

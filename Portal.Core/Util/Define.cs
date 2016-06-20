@@ -20,8 +20,9 @@ namespace Portal.Core.Util
 
         public enum Status
         {
-            DeActive = 0,
-            Active = 1
+            Delete = 0,
+            Active = 1,
+            Pending = 2
         }
     }
 }

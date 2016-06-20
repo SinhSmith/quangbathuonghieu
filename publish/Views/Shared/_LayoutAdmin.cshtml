@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thương Hiệu Uy Tín Việt</title>
+    <meta name="Description" content="Trung tâm Quảng bá thương hiệu công ty, Doanh nghiệp, cơ sở kinh doanh đến khách hàng hiệu quả uy tín.">
+    <meta name="Keywords" content="ho so doanh nghiep, quang ba doanh nghiep">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="http://uytinviet.com.vn/">
+    <meta property="og:title" content="Thương Hiệu Uy Tín Việt.">
+    <meta property="og:image" content="http://uytinviet.com.vn//images/logo.png">
+    <meta property="og:site_name" content="Thương Hiệu Uy Tín Việt.">
+    <meta property="og:description" content="Trung tâm Quảng bá thương hiệu công ty, Doanh nghiệp, cơ sở kinh doanh đến khách hàng hiệu quả uy tín.">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta property="fb:app_id" content="1085218064863895" />
+    <link rel="icon" type="image/ico" href="~/favicon.ico">
+
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/bxslider")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/main")
+    @Scripts.Render("~/bundles/bxslider")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-74699787-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.5&appId=1085218064863895";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+    <div id="wrapper">
+        <!--Header-->
+        <header>
+            <div class="navTop navbar navbar-default">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-left" aria-expanded="false">
+                            <span class="sr-only"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbar-collapse-left" style="padding: 0px; border:none;">
+                        @Html.Action("Menu", "Home")
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+            <div class="container" style="padding: 0;">
+                <div class="headerLeft">
+                    <a href="#"><img src="/images/logo.png" /></a>
+                </div>
+                <div class="headerRight">
+                    @Html.Action("BannerPartial", "Home")
+                </div>
+            </div>
+        </header>
+        <!--End Header-->
+        <!--Body-->
+        <div class="container" style="background: #fff; margin-top: 10px;">
+            <!--pageContent-->
+            <div class="pageContent">
+                    @RenderBody()
+            </div>
+            <!--End pageContent-->
+        </div>
+        <!--End Body-->
+        <!--Footer-->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="copyright-text">&copy; @DateTime.Now.Year - Công Ty TNHH MTV Công Nghệ Truyền Thông Entergold.</div>
+                    <div><i class="glyphicon glyphicon-globe"></i> 17/1 Cần Giuộc, Phường An Khê, Quận Thanh Khê, Tp Đà Nẵng. <b>Văn phòng đại diện:</b> 9-11 Nguyễn Du, Quận Hải Châu, Tp Đà Nẵng</div>
+                    <div>
+                        <i class="glyphicon glyphicon-envelope"></i> <a href="mailto:contact@uytinviet.com.vn" rel="nofollow">contact@uytinviet.com.vn</a> - <i class="glyphicon glyphicon-phone"></i>01689337063
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--End Footer-->
+        <a href="javascript:;" id="to_top">
+            <img src="/Images/icon_gototop.png" alt="">
+        </a>
+    </div>
+
+</body>
+</html>

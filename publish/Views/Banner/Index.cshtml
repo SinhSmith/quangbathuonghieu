@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Portal.Core.Database.Banner>
+
+    @{
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+    <script>
+        $(document).ready(function () {
+            $(".btnDelete").click(function (e) {
+                e.preventDefault();
+                if (confirm('Bạn có thật sự muốn xóa banner này?')) {
+                    $.ajax({
+                        url: '@Url.Action("Delete")',
+                        type: "POST",
+                        data: { id: $(this).attr("data-id") },
+                    }).done(function (data) {
+                        if (data.success) {
+                            //Refresh
+                            location.reload();
+                        }
+                        else {
+                            alert("Có lỗi xảy ra trong khi xóa. Vui lòng thử lại lần nữa.");
+                        }
+                    }).fail(function () {
+                        alert("Có lỗi xảy ra trong khi xóa. Vui lòng thử lại lần nữa.");
+                    })
+                }
+                return false;
+            });
+        });
+    </script>
+
+    <div style="padding-bottom: 10px;">
+        <h3 style="display: inline-block;">Danh mục banner (@Model.Count().ToString() banner)</h3>
+        <p class="pull-right">
+            @Html.ActionLink("Tạo mới banner", "Create", null, new { @class = "btn btn-sm btn-info" })
+        </p>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>
+                Banner
+            </th>
+            <th>
+                Tên banner
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <span class="glyphicon @(item.Status == (int)Portal.Core.Util.Define.Status.Active ? "glyphicon-ok" : "glyphicon-remove")"></span>
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-primary" })
+                    <button class="btn btn-sm btn-danger btnDelete" data-id=@item.Id>Xóa</button>
+                </td>
+            </tr>
+        }
+
+    </table>

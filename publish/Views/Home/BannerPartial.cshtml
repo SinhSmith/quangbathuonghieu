@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Portal.Core.Database.Banner>
+
+<script>
+    $(document).ready(function () {
+        $('.bxslider').bxSlider({
+            auto: true,
+            pager: false,
+            controls: false,
+            minSlides: 2
+        });
+    });
+</script>
+<div>
+    <div class="boxContent">
+        @if (Model.Count() == 1)
+        {
+            <img alt="" src="@(Model.First().Image.FilePath + "/" + Model.First().Image.FileName)" style="height:175px; width:100%;" />
+        }
+        else
+        {
+            <ul class="bxslider">
+            @foreach (var item in Model)
+            {
+                <li><img src="@(item.Image.FilePath + "/" + item.Image.FileName)" style="height:175px; width:100%;" /></li>    
+            }
+        </ul>
+        }
+    </div>
+    <div class="clearfix"></div>
+</div>

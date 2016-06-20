@@ -172,9 +172,24 @@ namespace Portal.Site.Controllers
                             Password = model.Password,
                             Address = model.Address,
                             City = model.City,
-                            Phone = model.Phone
+                            Phone = model.Phone,
+                            Status = (int)Portal.Core.Util.Define.Status.Active
                         };
                         db.Profiles.Add(profile);
+
+                        var company = new Portal.Core.Database.Company
+                        {
+                            Id = Guid.NewGuid(),
+                            Address = model.Address,
+                            AddressForMap = model.Address,
+                            City = model.City,
+                            Phone = model.Phone,
+                            Status = (int)Portal.Core.Util.Define.Status.Pending,
+                            CreatedBy = profile.Id,
+                            CreatedDate = DateTime.Now,
+                            CountView = new Random().Next(200, 1000)
+                        };
+                        db.Companies.Add(company);
                         db.SaveChanges();
                     }
 

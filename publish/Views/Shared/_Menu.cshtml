@@ -1,0 +1,26 @@
+﻿@model Portal.Site.Models.Menu
+<ul class="nav navbar-nav">
+    @foreach (var item in Model.Items)
+    {
+        <li>
+            @if (item.ChildMenuItems.Any())
+            {
+                <a class="dropdown-toggle waves-effect" data-toggle="dropdown" href="@item.MenuItemPath">@item.MenuItemName <span class="caret"></span></a>
+
+                <ul class="dropdown-menu">
+                    @foreach (var subitem in item.ChildMenuItems)
+                    {
+                        <li><a href="@subitem.MenuItemPath"><i class="glyphicon @subitem.IconClass"></i> @subitem.MenuItemName</a></li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <a class="waves-effect" href="@item.MenuItemPath">@item.MenuItemName</a>
+            }
+        </li>
+    }
+    <li>
+        <a class="waves-effect" target="_blank" href="http://entergold.net/">Thông tin công ty</a>
+    </li>
+</ul>

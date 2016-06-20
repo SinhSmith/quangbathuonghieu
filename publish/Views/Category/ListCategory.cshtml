@@ -1,0 +1,26 @@
+﻿@model List<Portal.Core.Database.Category>
+
+<div class="boxItem">
+    <h1 class="title">@(Portal.Core.Service.EnumHelper.GetDescriptionFromEnum((Portal.Core.Service.BaseService.CategoryType)Model.First().Type))</h1>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <ul class="listJob @(Model.First().Type == (int)Portal.Core.Service.BaseService.CategoryType.City ? "listCity" : "")">
+                @foreach (var category in Model)
+            {
+                    <li>
+                        @if (Model.First().Type == (int)Portal.Core.Service.BaseService.CategoryType.City)
+                        {
+                            <i class="glyphicon glyphicon-globe"></i>
+                            <a href="@Url.Action("List", "Company", new { city = category.Id })" title="@category.Name">@category.Name</a>
+                        }
+                        else
+                        {
+                            <i class="glyphicon glyphicon-tint"></i>
+                            <a href="@Url.Action("List", "Company", new { trade = category.Id })" title="@category.Name">@category.Name</a>
+                        }
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
