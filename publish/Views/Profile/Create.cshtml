@@ -4,7 +4,30 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@using (Html.BeginForm("Create", "Profile", null, FormMethod.Post))
+<script>
+    $(document).ready(function () {
+        $("#form-create-profile").submit(function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+            }).done(function (data) {
+                if (data.success) {
+                    location.href = "/quan-ly-nguoi-dung";
+                }
+                else {
+                    alert(data.message);
+                }
+            }).fail(function () {
+                alert("Có lỗi xảy ra trong khi xóa. Vui lòng thử lại lần nữa.");
+            })
+            return false;
+        });
+    });
+</script>
+
+@using (Html.BeginForm("Create", "Profile", null, FormMethod.Post, new { id = "form-create-profile" }))
 {
     @Html.AntiForgeryToken()
 

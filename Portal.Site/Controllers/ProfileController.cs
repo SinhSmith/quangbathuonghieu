@@ -130,7 +130,7 @@ namespace Portal.Site.Controllers
                         db.SaveChanges();
                     }
 
-                    return RedirectToAction("Index", "Profile");
+                    return Json(new { success = true });
                 }
                 else
                 {
